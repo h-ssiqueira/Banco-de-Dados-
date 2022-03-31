@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="DIAGRAM.erd">
+	<entities>
+		<data-source id="postgres-jdbc-17fe091977e-55f9ccde70f03885">
+			<entity id="1" name="aplicador" fq-name="public.aplicador" order="0" x="219" y="50">
+				<path name="public"/>
+				<path name="vacinacao_cadastro"/>
+			</entity>
+			<entity id="2" name="pessoa" fq-name="public.pessoa" order="1" x="208" y="181">
+				<path name="public"/>
+				<path name="vacinacao_cadastro"/>
+			</entity>
+			<entity id="3" name="pessoa_vacinada" fq-name="public.pessoa_vacinada" order="2" x="9" y="151">
+				<path name="public"/>
+				<path name="vacinacao_cadastro"/>
+			</entity>
+			<entity id="4" name="vacina" fq-name="public.vacina" order="3" x="218" y="313">
+				<path name="public"/>
+				<path name="vacinacao_cadastro"/>
+			</entity>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="aplicador_fk" fq-name="public.pessoa_vacinada.aplicador_fk" type="fk" pk-ref="1" fk-ref="3"/>
+		<relation name="pessoa_fk" fq-name="public.pessoa_vacinada.pessoa_fk" type="fk" pk-ref="2" fk-ref="3"/>
+		<relation name="vacina_fk" fq-name="public.pessoa_vacinada.vacina_fk" type="fk" pk-ref="4" fk-ref="3"/>
+	</relations>
+</diagram>
