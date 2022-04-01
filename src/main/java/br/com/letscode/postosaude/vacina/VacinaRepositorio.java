@@ -1,6 +1,5 @@
-package br.com.letscode.vacinadoscoviddatabase.Vacina;
+package br.com.letscode.postosaude.vacina;
 
-import br.com.letscode.vacinadoscoviddatabase.Pessoa.Pessoa;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VacinaRepositorio extends JpaRepository<Vacina, Integer> {

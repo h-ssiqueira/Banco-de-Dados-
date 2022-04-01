@@ -53,7 +53,7 @@ Caused by: org.eclipse.core.internal.resources.ResourceException: Invalid projec
 !ENTRY org.eclipse.jdt.ui 4 10001 2022-03-31 16:09:31.034
 !MESSAGE Internal Error
 !STACK 1
-Java Model Exception: Java Model Status [SpringBootApplication.java [in src.main.java.br.com.letscode.vacinadoscoviddatabase [in <project root> [in vacinados-covid-database (1)]]] does not exist]
+Java Model Exception: Java Model Status [SpringBootApplication.java [in src.main.java.br.com.letscode.postosaude [in <project root> [in vacinados-covid-database (1)]]] does not exist]
 	at org.eclipse.jdt.internal.core.JavaElement.newJavaModelException(JavaElement.java:584)
 	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:254)
 	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:597)
@@ -96,7 +96,7 @@ Java Model Exception: Java Model Status [SpringBootApplication.java [in src.main
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1462)
 !SUBENTRY 1 org.eclipse.jdt.core 4 969 2022-03-31 16:09:31.036
-!MESSAGE SpringBootApplication.java [in src.main.java.br.com.letscode.vacinadoscoviddatabase [in <project root> [in vacinados-covid-database (1)]]] does not exist
+!MESSAGE SpringBootApplication.java [in src.main.java.br.com.letscode.postosaude [in <project root> [in vacinados-covid-database (1)]]] does not exist
 
 !ENTRY org.eclipse.m2e.logback.appender 4 0 2022-03-31 16:09:34.748
 !MESSAGE Could not download sources for antlr:antlr:2.7.7
