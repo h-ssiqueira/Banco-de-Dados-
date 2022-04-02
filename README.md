@@ -47,20 +47,28 @@ Esse sistema possui:
  *Projeto inicial da Aplicação*
  
  ![diagrama2](images_README/aplicacaoDiagrama.png)
+
  
- _______________________________________________________________________________________________________________________________________
- 
- 
- ### Desenvolvimento
- 
-😃 | Banco de Dados | Aplicação |  C   |  R   |   U   |   D
-   ------- | ---------- | ---------- | --------  | ---------  |  -------  |  ----------
-   E  | ⚫ | ⚫ | ⚫ |  ⚫   |  ⚫  | ⚫
-   I  | ⚫ | ⚫ | ⚫ |  ⚫   |  ⚫  | ⚫
-   G | ⚫ | ⚫ | ⚫ |  ⚫   |  ⚫  | ⚫
-   C  | ⚫ | ⚫ | ⚫ |  ⚫   |  ⚫  | ⚫
- Aprovado  | ⬜  | ⬜ | ⬜ | ⬜   | ⬜  | ⬜
-   
+### ! Regras de negócio
+* Cada pessoa pode tomar várias doses da vacina , mas será cadastrada apenas uma vez.
+* Cada vacina só pode ser registrada em uma aplicação.
+* Listagem de vacinas disponíveis não englobam aquelas que já foram usadas em aplicações anteriores, nem deletadas do sistema.
+* O tipo de exclusão é Soft Delete
+* Os profissionais de cada área possuem métodos diferentes que apenas eles podem realizar.
+* Os aplicadores devem ser apenas os profissionais da saúde.
+
+_______________________________________________________________________________________________________________________________________
+
+### Desenvolvimento
+
+| 😃        | Banco de Dados | Aplicação |  C   |  R   |   U   |   D|
+|-----------| ---------- | ---------- | --------  | ---------  |  -------  |  ----------|
+| E         | ⚫ | ⚫ | ⚫ |  ⚫   |  ⚫  | ⚫|
+| I         | ⚫ | ⚫ | ⚫ |  ⚫   |  ⚫  | ⚫|
+| G         | ⚫ | ⚫ | ⚫ |  ⚫   |  ⚫  | ⚫|
+| C         | ⚫ | ⚫ | ⚫ |  ⚫   |  ⚫  | ⚫|
+|  Aprovado | ⬜  | ⬜ | ⬜ | ⬜   | ⬜  | ⬜ |
+
  ```
  Legenda
 
@@ -70,4 +78,3 @@ Esse sistema possui:
   
   🔴 Encontrei algum problema aqui (precisa de ajuda ou revisar o projeto)
 ```  
- 
