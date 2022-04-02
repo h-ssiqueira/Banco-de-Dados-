@@ -37,12 +37,14 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Profissional profissional = new Profissional(1, "Maria", CargosEnum.PROFISSIONAL_ESTOQUE, 1234);
+		Profissional profissional = new Profissional("123", CargosEnum.PROFISSIONAL_ESTOQUE, );
 
-		Paciente paciente = new Paciente(1, "Isadora Oliveira Rogieri", LocalDate.of(1995,9,15), SexoEnum.FEMININO);
-		Vacina vacina = new Vacina(1, 13, "Butantan");
+		Paciente paciente = new Paciente( "Isadora Oliveira Rogieri", LocalDate.of(1995,9,15), SexoEnum.FEMININO);
+		Vacina vacina = new Vacina( 13, "Butantan", 2);
 
-		PacienteVacinado pacienteVacinado = new PacienteVacinado(1, paciente, profissional, vacina, LocalDate.of(2021,5,23));
+		PacienteVacinado pacienteVacinado = new PacienteVacinado( paciente, profissional, vacina, LocalDate.of(2021,5,23),1);
+
+
 		this.pacienteRepositorio.cadastrarPaciente(paciente);
 		this.profissionalEstoque.cadastrarVacina(vacina);
 		this.profissionalRepositorio.cadastrarProfissional((ProfissionalEstoque) profissional);
@@ -51,8 +53,8 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 		String resultadoProfissional = this.profissionalEstoque.getNome();
 		System.out.println(resultadoProfissional);
 
-		List<PacienteVacinado> resultList = this.pacienteVacinadoRepositorio.findAll();
-		resultList.forEach(System.out::println);
+		//List<PacienteVacinado> resultList = this.pacienteVacinadoRepositorio.findAll();
+		//resultList.forEach(System.out::println);
 
 	}
 }

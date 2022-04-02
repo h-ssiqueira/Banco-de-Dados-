@@ -7,8 +7,6 @@ import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -27,4 +25,10 @@ public class Paciente {
 
     @Enumerated(EnumType.STRING)
     private SexoEnum sexo;
+
+    public Paciente(String nome, LocalDate data_nascimento, SexoEnum sexo) {
+        this.nome = nome;
+        this.data_nascimento = data_nascimento;
+        this.sexo = sexo;
+    }
 }
