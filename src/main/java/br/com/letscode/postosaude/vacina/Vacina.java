@@ -3,10 +3,12 @@ package br.com.letscode.postosaude.vacina;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @ToString
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 public class Vacina {
 
@@ -15,7 +17,7 @@ public class Vacina {
     private int id;
 
     @Column(nullable = false)
-    private Integer codigo_vacina;
+    private Integer codigoVacina;
 
     @Column(nullable = false)
     private String fabricante;
@@ -23,10 +25,11 @@ public class Vacina {
     @Column(nullable = false)
     private Integer posto_saude;
 
-    public Vacina(Integer codigo_vacina, String fabricante, Integer posto_saude) {
-        this.codigo_vacina = codigo_vacina;
+    public Vacina(Integer codigoVacina, String fabricante, Integer posto_saude) {
+        this.codigoVacina = codigoVacina;
         this.fabricante = fabricante;
         this.posto_saude = posto_saude;
     }
+
 }
 

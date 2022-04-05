@@ -1,6 +1,5 @@
 package br.com.letscode.postosaude.paciente;
 
-import br.com.letscode.postosaude.profissionais.CargosEnum;
 import br.com.letscode.postosaude.profissionais.Profissional;
 import br.com.letscode.postosaude.vacina.Vacina;
 import lombok.*;
@@ -11,6 +10,7 @@ import java.time.LocalDate;
 @ToString
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 public class PacienteVacinado {
 
@@ -18,15 +18,15 @@ public class PacienteVacinado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne //(cascade = CascadeType.ALL)
     @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
 
-    @ManyToOne
+    @ManyToOne //(cascade = CascadeType.ALL)
     @JoinColumn (name = "profissional_id", nullable = false)
     private Profissional profissional;
 
-    @ManyToOne
+    @ManyToOne //(cascade = CascadeType.ALL)
     @JoinColumn (name = "vacina_id", nullable = false)
     private Vacina vacina;
 
@@ -44,4 +44,4 @@ public class PacienteVacinado {
         this.dose = dose;
     }
 }
-}
+
