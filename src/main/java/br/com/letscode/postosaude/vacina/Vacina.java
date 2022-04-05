@@ -25,6 +25,8 @@ public class Vacina {
     @Column(nullable = false)
     private Integer posto_saude;
 
+
+
     public Vacina(Integer codigoVacina, String fabricante, Integer posto_saude) {
         this.codigoVacina = codigoVacina;
         this.fabricante = fabricante;

@@ -44,41 +44,41 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		List<PacienteVacinado> vacinadosList = BootstrapData.buildPacienteVacinados();
-		List<Paciente> pacienteList = vacinadosList.stream()
-				.map(PacienteVacinado::getPaciente)
-				.distinct()
-				.collect(Collectors.toList());
-		this.pacienteRepositorio.saveAll(pacienteList);
-
-		List<Profissional> profissionalList = vacinadosList.stream()
-				.map(PacienteVacinado::getProfissional)
-				.distinct()
-				.collect(Collectors.toList());
-		this.profissionalRepositorio.saveAll(profissionalList);
-
-		List<Vacina> vacinaList = vacinadosList.stream()
-				.map(PacienteVacinado::getVacina)
-				.distinct()
-				.collect(Collectors.toList());
-		this.vacinaRepositorio.saveAll(vacinaList);
-
-
-
-		for (PacienteVacinado pv : vacinadosList){
-			Paciente pacienteBd = this.pacienteRepositorio.findOneByNome(pv.getPaciente().getNome()).orElseThrow();
-			pv.setPaciente(pacienteBd);
-			Profissional profBd = this.profissionalRepositorio.findOneByCodigoRegistro(pv.getProfissional().getCodigoRegistro()).orElseThrow();
-			pv.setProfissional(profBd);
-			Vacina vacBd = this.vacinaRepositorio.findOneById(pv.getVacina().getId()).orElseThrow();
-			pv.setVacina(vacBd);
-			System.out.println(pv);
-
-			PacienteVacinado pacVac = new PacienteVacinado(pacienteBd,profBd,vacBd, pv.getData_aplicacao(), pv.getDose());
-			this.pacienteVacinadoRepositorio.save(pacVac);
-
-
-		}
+//		List<PacienteVacinado> vacinadosList = BootstrapData.buildPacienteVacinados();
+//		List<Paciente> pacienteList = vacinadosList.stream()
+//				.map(PacienteVacinado::getPaciente)
+//				.distinct()
+//				.collect(Collectors.toList());
+//		this.pacienteRepositorio.saveAll(pacienteList);
+//
+//		List<Profissional> profissionalList = vacinadosList.stream()
+//				.map(PacienteVacinado::getProfissional)
+//				.distinct()
+//				.collect(Collectors.toList());
+//		this.profissionalRepositorio.saveAll(profissionalList);
+//
+//		List<Vacina> vacinaList = vacinadosList.stream()
+//				.map(PacienteVacinado::getVacina)
+//				.distinct()
+//				.collect(Collectors.toList());
+//		this.vacinaRepositorio.saveAll(vacinaList);
+//
+//
+//
+//		for (PacienteVacinado pv : vacinadosList){
+//			Paciente pacienteBd = this.pacienteRepositorio.findOneByNome(pv.getPaciente().getNome()).orElseThrow();
+//			pv.setPaciente(pacienteBd);
+//			Profissional profBd = this.profissionalRepositorio.findOneByCodigoRegistro(pv.getProfissional().getCodigoRegistro()).orElseThrow();
+//			pv.setProfissional(profBd);
+//			Vacina vacBd = this.vacinaRepositorio.findOneById(pv.getVacina().getId()).orElseThrow();
+//			pv.setVacina(vacBd);
+//			System.out.println(pv);
+//
+//			PacienteVacinado pacVac = new PacienteVacinado(pacienteBd,profBd,vacBd, pv.getData_aplicacao(), pv.getDose());
+//			this.pacienteVacinadoRepositorio.save(pacVac);
+//
+//
+//		}
 
 
 

@@ -26,7 +26,7 @@ public class PacienteVacinado {
     @JoinColumn (name = "profissional_id", nullable = false)
     private Profissional profissional;
 
-    @ManyToOne //(cascade = CascadeType.ALL)
+    @OneToOne //(cascade = CascadeType.ALL)
     @JoinColumn (name = "vacina_id", nullable = false)
     private Vacina vacina;
 
@@ -35,6 +35,8 @@ public class PacienteVacinado {
 
     @Column (nullable = false)
     private Integer dose;
+
+
 
     public PacienteVacinado(Paciente paciente, Profissional profissional, Vacina vacina, LocalDate data_aplicacao, Integer dose) {
         this.paciente = paciente;
