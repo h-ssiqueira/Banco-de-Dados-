@@ -20,7 +20,7 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column (nullable = false)
+    @Column (nullable = false, unique=true)
     private String nome;
 
     @Column(nullable = false)
@@ -34,7 +34,6 @@ public class Paciente {
         this.data_nascimento = data_nascimento;
         this.sexo = sexo;
     }
-
 
     @Override
     public boolean equals(Object o) {

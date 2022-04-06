@@ -19,6 +19,7 @@ public class Profissional {
 
     @Column(nullable = false)
     private String codigoRegistro;
+
     @Enumerated(EnumType.STRING)
     private CargosEnum cargo;
 
@@ -26,8 +27,6 @@ public class Profissional {
         this.codigoRegistro = codigoRegistro;
         this.cargo = cargo;
     }
-
-
 
     @Override
     public boolean equals(Object o) {

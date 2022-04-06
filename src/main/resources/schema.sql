@@ -41,3 +41,4 @@ ALTER TABLE public.paciente_vacinado
     ADD CONSTRAINT paciente_fk FOREIGN KEY (paciente_id) REFERENCES public.paciente(id);
 ALTER TABLE public.paciente_vacinado
     ADD CONSTRAINT vacina_fk FOREIGN KEY (vacina_id) REFERENCES public.vacina(id);
+ALTER TABLE public.paciente ADD CONSTRAINT nome_unico UNIQUE (nome);

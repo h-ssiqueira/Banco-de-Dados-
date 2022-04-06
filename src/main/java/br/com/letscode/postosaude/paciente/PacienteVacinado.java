@@ -18,15 +18,15 @@ public class PacienteVacinado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne //(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
 
-    @ManyToOne //(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "profissional_id", nullable = false)
     private Profissional profissional;
 
-    @OneToOne //(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "vacina_id", nullable = false)
     private Vacina vacina;
 
@@ -35,8 +35,6 @@ public class PacienteVacinado {
 
     @Column (nullable = false)
     private Integer dose;
-
-
 
     public PacienteVacinado(Paciente paciente, Profissional profissional, Vacina vacina, LocalDate data_aplicacao, Integer dose) {
         this.paciente = paciente;
