@@ -8,10 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -70,16 +68,5 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 		Optional<Paciente> deletePaciente = this.pacienteRepositorio.findOneById(1);
 		Paciente deletarPaciente = deletePaciente.get();
 		manager.remove(deletarPaciente);
-//
-//		@Cascade()
-//		Optional<Paciente> pacienteDelete = this.pacienteRepositorio.findOneById(2);
-//		Paciente deletePaciente = pacienteDelete.get();
-//		this.pacienteRepositorio.deleteById(2);
-//		this.pacienteRepositorio.save(deletePaciente);
-
-//		Optional<Paciente> pacienteqq = this.pacienteRepositorio.findOneById(2);
-//		Paciente pp = pacienteqq.get();
-//		this.pacienteRepositorio.deleteById(2);
-//		this.pacienteRepositorio.save(pp);
 	}
 }
