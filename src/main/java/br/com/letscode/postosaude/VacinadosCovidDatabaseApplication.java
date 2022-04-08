@@ -64,9 +64,9 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 		Optional<Vacina> vacina1 = this.vacinaRepositorio.findOneById(1);
 		Vacina readVacina = vacina1.get();
 
-		//DELETE
-		Optional<Paciente> deletePaciente = this.pacienteRepositorio.findOneById(1);
-		Paciente deletarPaciente = deletePaciente.get();
-		manager.remove(deletarPaciente);
+//		//DELETE
+//		Optional<Paciente> deletePaciente = this.pacienteRepositorio.findOneById(1);
+//		Paciente deletarPaciente = deletePaciente.get();
+//		manager.remove(deletarPaciente);
 	}
 }

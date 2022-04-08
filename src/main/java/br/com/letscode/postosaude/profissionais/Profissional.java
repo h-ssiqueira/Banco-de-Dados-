@@ -11,16 +11,23 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
+@Table(name="\"PROFISSIONAL\"", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "ID"),
+        @UniqueConstraint(columnNames = "CODIGO_REGISTRO"),
+        @UniqueConstraint(columnNames = "CARGO")
+})
 public class Profissional {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "CODIGO_REGISTRO")
     private String codigoRegistro;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "CARGO")
     private CargosEnum cargo;
 
     public Profissional(String codigoRegistro, CargosEnum cargo) {
