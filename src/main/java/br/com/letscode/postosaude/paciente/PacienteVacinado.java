@@ -44,4 +44,3 @@ public class PacienteVacinado {
         this.dose = dose;
     }
 }
-

@@ -31,4 +31,3 @@ public class Vacina {
         this.posto_saude = posto_saude;
     }
 }
-
