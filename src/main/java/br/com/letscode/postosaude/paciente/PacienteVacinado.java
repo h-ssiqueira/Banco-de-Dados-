@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @ToString
 @Getter
@@ -17,8 +18,8 @@ import java.time.LocalDate;
         @UniqueConstraint(columnNames = "PACIENTE_ID"),
         @UniqueConstraint(columnNames = "PROFISSIONAL_ID"),
         @UniqueConstraint(columnNames = "VACINA_ID"),
-        @UniqueConstraint(columnNames = "DATA_APLICACAO"),
-        @UniqueConstraint(columnNames = "DOSE")
+       @UniqueConstraint(columnNames = "DATA_APLICACAO"),
+       @UniqueConstraint(columnNames = "DOSE")
 })
 public class PacienteVacinado {
 
@@ -51,5 +52,18 @@ public class PacienteVacinado {
         this.vacina = vacina;
         this.data_aplicacao = data_aplicacao;
         this.dose = dose;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PacienteVacinado that = (PacienteVacinado) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

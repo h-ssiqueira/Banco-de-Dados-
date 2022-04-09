@@ -5,14 +5,19 @@ import br.com.letscode.postosaude.profissionais.*;
 import br.com.letscode.postosaude.vacina.Vacina;
 import br.com.letscode.postosaude.vacina.VacinaRepositorio;
 import org.springframework.boot.CommandLineRunner;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Sort;
 
 import javax.transaction.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
+import java.util.List;
+
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 @Transactional
@@ -31,7 +36,7 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 											 ProfissionalRepositorio profissionalRepositorio,
 											 PacienteVacinadoRepositorio pacienteVacinadoRepositorio)
 		{
-			this.pacienteRepositorio = pacienteRepositorio;
+			this.pacienteRepositorio= pacienteRepositorio;
 			this.vacinaRepositorio = vacinaRepositorio;
 			this.profissionalRepositorio = profissionalRepositorio;
 			this.pacienteVacinadoRepositorio = pacienteVacinadoRepositorio;
@@ -55,12 +60,35 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 		//UPDATE
 		Optional<Paciente> pacienteParaAlterar = this.pacienteRepositorio.findOneByNome("IDIANA ANGELINA BERTOTTI");
 		Paciente pacienteAlterado = pacienteParaAlterar.get();
-		pacienteAlterado.setData_nascimento(LocalDate.of(1974, 05, 18));
+		pacienteAlterado.setData_nascimento(LocalDate.of(1974, 5, 18));
 		this.pacienteRepositorio.save(pacienteAlterado);
+
+
+		// UPDATE em qualquer dado do paciente vacinado
+		Optional<PacienteVacinado> pacVacParaAlterar = this.pacienteVacinadoRepositorio.findOneById(20);
+		PacienteVacinado pacVacAlterado = pacVacParaAlterar.get();
+		pacVacAlterado.getVacina().setCodigoVacina(10500);
+		pacVacAlterado.getProfissional().setCodigoRegistro("1967984");
+		pacVacAlterado.getPaciente().setNome("ADAO ADALBERTO LIEBGOTTI");
+		this.pacienteVacinadoRepositorio.save(pacVacAlterado);
 
 		//READ
 		Optional<Paciente> buscarPaciente = this.pacienteRepositorio.findOneByNome("VALDIR DALLA MONTA");
 		System.out.println("Resultado da busca: " + buscarPaciente.get());
+
+		//READ com filtros por nome do paciente ou por dose por sexo
+		List<PacienteVacinado> repositorioAll = this.pacienteVacinadoRepositorio.findAll().stream()
+				.collect(Collectors.toList());
+		List<PacienteVacinado> buscar = repositorioAll.stream()
+				//.filter(( PacienteVacinado p ) -> p.getPaciente().getNome().contains("VALDIR"))
+				//.filter(( PacienteVacinado p ) -> p.getDose().equals(2)
+				.filter(( PacienteVacinado p ) -> p.getPaciente().getSexo().equals(SexoEnum.FEMININO)
+						).collect(Collectors.toList());
+		System.out.println("Resultado da busca:");
+		buscar.stream().forEach(System.out::println);
+
+
+
 
 		//DELETE
 		Optional<Paciente> consultaPaciente = this.pacienteRepositorio.findOneByNome("JOANA SILVA SOUZA");
