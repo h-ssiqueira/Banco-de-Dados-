@@ -12,28 +12,37 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name="\"PACIENTE_VACINADO\"", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "ID"),
+        @UniqueConstraint(columnNames = "PACIENTE_ID"),
+        @UniqueConstraint(columnNames = "PROFISSIONAL_ID"),
+        @UniqueConstraint(columnNames = "VACINA_ID"),
+        @UniqueConstraint(columnNames = "DATA_APLICACAO"),
+        @UniqueConstraint(columnNames = "DOSE")
+})
 public class PacienteVacinado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Integer id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "paciente_id", nullable = false)
+    @JoinColumn(name = "PACIENTE_ID", nullable = false)
     private Paciente paciente;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn (name = "profissional_id", nullable = false)
+    @JoinColumn (name = "PROFISSIONAL_ID", nullable = false)
     private Profissional profissional;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn (name = "vacina_id", nullable = false)
+    @JoinColumn (name = "VACINA_ID", nullable = false)
     private Vacina vacina;
 
-    @Column (nullable = false)
+    @Column (nullable = false, name = "DATA_APLICACAO")
     private LocalDate data_aplicacao;
 
-    @Column (nullable = false)
+    @Column (nullable = false, name = "DOSE")
     private Integer dose;
 
     public PacienteVacinado(Paciente paciente, Profissional profissional, Vacina vacina, LocalDate data_aplicacao, Integer dose) {
@@ -44,4 +53,3 @@ public class PacienteVacinado {
         this.dose = dose;
     }
 }
-

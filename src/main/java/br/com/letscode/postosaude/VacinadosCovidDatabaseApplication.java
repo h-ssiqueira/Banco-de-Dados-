@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.transaction.Transactional;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -16,6 +18,8 @@ import java.util.Optional;
 @Transactional
 public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 
+	@PersistenceContext
+	private EntityManager manager;
 	private final PacienteRepositorio pacienteRepositorio;
 	private final VacinaRepositorio vacinaRepositorio;
 	private final ProfissionalRepositorio profissionalRepositorio;
@@ -39,6 +43,7 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
 
 		//CREATE
 		Paciente paciente = new Paciente("JOANA SILVA SOUZA", LocalDate.of(1990,9,25), SexoEnum.FEMININO);

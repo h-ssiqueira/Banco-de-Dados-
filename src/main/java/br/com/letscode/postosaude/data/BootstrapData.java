@@ -107,7 +107,6 @@ public class BootstrapData {
         new PacienteVacinado (new Paciente("ARTEMIO FABIANE", LocalDate.of(1939, 8, 7), SexoEnum.MASCULINO) , new Profissional("867984" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(327642, "FUNDACAO OSWALDO CRUZ",2249278), LocalDate.of(2021, 3, 1), 1),
         new PacienteVacinado (new Paciente("VILERINO DALL AGNOL", LocalDate.of(1936, 8, 14), SexoEnum.MASCULINO) , new Profissional("6967984" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(1967984, "FUNDACAO OSWALDO CRUZ",2249278), LocalDate.of(2021, 3, 1), 1),
         new PacienteVacinado (new Paciente("DORILDE SCHIMITT", LocalDate.of(1941, 3, 4), SexoEnum.FEMININO) , new Profissional("6967984" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(2167984, "FUNDACAO OSWALDO CRUZ",2249278), LocalDate.of(2021, 3, 1), 1),
-
         new PacienteVacinado (new Paciente("MARIA REMUS PASA", LocalDate.of(1938, 9, 26), SexoEnum.FEMININO) , new Profissional("6967984" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(227984, "FUNDACAO OSWALDO CRUZ",2249278), LocalDate.of(2021, 3, 1), 1),
         new PacienteVacinado (new Paciente("GENINHO NATALINO MARTINAZZO", LocalDate.of(1938, 12, 25), SexoEnum.MASCULINO) , new Profissional("1967984" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(36984, "FUNDACAO OSWALDO CRUZ",2249278), LocalDate.of(2021, 3, 1), 1),
         new PacienteVacinado (new Paciente("MOACIR PRIMO CANAL", LocalDate.of(1937, 10, 2), SexoEnum.MASCULINO) , new Profissional("6967984" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(1067984, "FUNDACAO OSWALDO CRUZ",2249278), LocalDate.of(2021, 3, 1), 1),
@@ -137,7 +136,6 @@ public class BootstrapData {
         new PacienteVacinado (new Paciente("MATILDE CATARINA RAMPANELLI", LocalDate.of(1940, 3, 14), SexoEnum.FEMININO) , new Profissional("1920984" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(346342, "FUNDACAO BUTANTAN",2249278), LocalDate.of(2021, 2, 23), 1),
         new PacienteVacinado (new Paciente("PIERINA LUIZA MANICA", LocalDate.of(1936, 8, 9), SexoEnum.FEMININO) , new Profissional("6367984" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(1067984, "FUNDACAO BUTANTAN",2249278), LocalDate.of(2021, 2, 23), 1),
         new PacienteVacinado (new Paciente("ROSITA CERVO", LocalDate.of(1939, 4, 11), SexoEnum.FEMININO) , new Profissional("2567980" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(17642, "FUNDACAO BUTANTAN",2249278), LocalDate.of(2021, 2, 23), 1),
-
         new PacienteVacinado (new Paciente("VALDESIR ADONA", LocalDate.of(1951, 8, 23), SexoEnum.MASCULINO) , new Profissional("1967901" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(1967984, "FUNDACAO BUTANTAN",2249278), LocalDate.of(2021, 2, 22), 1),
         new PacienteVacinado (new Paciente("VALDESIR ADONA", LocalDate.of(1951, 8, 23), SexoEnum.MASCULINO) , new Profissional("2967984" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(196751, "FUNDACAO BUTANTAN",2249278), LocalDate.of(2021, 3, 29), 2),
         new PacienteVacinado (new Paciente("PEDRO CLAUDENIR INHAIA", LocalDate.of(1968, 7, 3), SexoEnum.MASCULINO) , new Profissional("1107984" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(107642, "FUNDACAO BUTANTAN",2249278), LocalDate.of(2021, 2, 22), 2),
@@ -342,8 +340,6 @@ public class BootstrapData {
         new PacienteVacinado (new Paciente("SUZANA FATIMA BERTOTTI MEDEIROS", LocalDate.of(1980, 6, 23), SexoEnum.FEMININO) , new Profissional("177984" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(5888642, "FUNDACAO OSWALDO CRUZ",2249278), LocalDate.of(2021, 1, 29), 1),
         new PacienteVacinado (new Paciente("IDIANA ANGELINA BERTOTTI", LocalDate.of(1974, 5, 16), SexoEnum.FEMININO) , new Profissional("2967784" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(58881642, "FUNDACAO OSWALDO CRUZ",2249278), LocalDate.of(2021, 1, 29), 1),
         new PacienteVacinado (new Paciente("IDIANA ANGELINA BERTOTTI", LocalDate.of(1974, 5, 16), SexoEnum.FEMININO) , new Profissional("497981" , CargosEnum.PROFISSIONAL_SAUDE), new Vacina(1081642, "FUNDACAO OSWALDO CRUZ",2249278), LocalDate.of(2021, 3, 8), 2)
-
         );
-               
     }
 }
