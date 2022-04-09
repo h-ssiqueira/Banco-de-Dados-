@@ -59,10 +59,35 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 		this.pacienteRepositorio.save(pacienteAlterado);
 
 		//READ - BUSCAR PACIENTE
+
+		// UPDATE em qualquer dado do paciente vacinado
+		Optional<PacienteVacinado> pacVacParaAlterar = this.pacienteVacinadoRepositorio.findOneById(20);
+		PacienteVacinado pacVacAlterado = pacVacParaAlterar.get();
+		pacVacAlterado.getVacina().setCodigoVacina(10500);
+		pacVacAlterado.getProfissional().setCodigoRegistro("1967984");
+		pacVacAlterado.getPaciente().setNome("ADAO ADALBERTO LIEBGOTTI");
+		this.pacienteVacinadoRepositorio.save(pacVacAlterado);
+
+		//READ
 		Optional<Paciente> buscarPaciente = this.pacienteRepositorio.findOneByNome("VALDIR DALLA MONTA");
 		System.out.println("Resultado da busca: " + buscarPaciente.get());
 
 		//DELETE - HARD DELETE PACIENTE
+		//READ com filtros por nome do paciente ou por dose por sexo
+		List<PacienteVacinado> repositorioAll = this.pacienteVacinadoRepositorio.findAll().stream()
+				.collect(Collectors.toList());
+		List<PacienteVacinado> buscar = repositorioAll.stream()
+				//.filter(( PacienteVacinado p ) -> p.getPaciente().getNome().contains("VALDIR"))
+				//.filter(( PacienteVacinado p ) -> p.getDose().equals(2)
+				.filter(( PacienteVacinado p ) -> p.getPaciente().getSexo().equals(SexoEnum.FEMININO)
+						).collect(Collectors.toList());
+		System.out.println("Resultado da busca:");
+		buscar.stream().forEach(System.out::println);
+
+
+
+
+		//DELETE
 		Optional<Paciente> consultaPaciente = this.pacienteRepositorio.findOneByNome("JOANA SILVA SOUZA");
 		this.pacienteVacinadoRepositorio.deleteByPacienteId(consultaPaciente.get().getId());
 		Optional<Paciente> verificaPacienteDeletado = this.pacienteRepositorio.findOneByNome("JOANA SILVA SOUZA");
