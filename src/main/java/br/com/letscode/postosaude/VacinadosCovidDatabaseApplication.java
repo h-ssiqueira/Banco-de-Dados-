@@ -7,10 +7,13 @@ import br.com.letscode.postosaude.vacina.VacinaRepositorio;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.Optional;
 
 @SpringBootApplication
+@Transactional
 public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 
 	private final PacienteRepositorio pacienteRepositorio;
@@ -51,8 +54,13 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 		this.pacienteRepositorio.save(pacienteAlterado);
 
 		//READ
-
+		Optional<Paciente> buscarPaciente = this.pacienteRepositorio.findOneByNome("VALDIR DALLA MONTA");
+		System.out.println("Resultado da busca: " + buscarPaciente.get());
 
 		//DELETE
+		Optional<Paciente> consultaPaciente = this.pacienteRepositorio.findOneByNome("JOANA SILVA SOUZA");
+		this.pacienteVacinadoRepositorio.deleteByPacienteId(consultaPaciente.get().getId());
+		Optional<Paciente> verificaPacienteDeletado = this.pacienteRepositorio.findOneByNome("JOANA SILVA SOUZA");
+		System.out.println("Ao deletar o paciente vacinado é verificado se ele também foi apagado do banco de dados, se sim, vai aparecer Optional.empty: " + verificaPacienteDeletado);
 	}
 }

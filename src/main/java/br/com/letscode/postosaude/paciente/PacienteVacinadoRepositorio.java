@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PacienteVacinadoRepositorio extends JpaRepository<PacienteVacinado, Integer> {
+    void deleteByPacienteId(Integer pacienteId);
 }
