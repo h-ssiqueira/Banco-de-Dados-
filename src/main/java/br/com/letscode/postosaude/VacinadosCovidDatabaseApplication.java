@@ -8,12 +8,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.transaction.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.util.Optional;
 
 @SpringBootApplication
+@Transactional
 public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 
 	@PersistenceContext
@@ -57,16 +59,13 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 		this.pacienteRepositorio.save(pacienteAlterado);
 
 		//READ
-		Optional<Paciente> readPaciente = this.pacienteRepositorio.findOneByNome("JOANA SILVA SOUZA");
-		Paciente pacienteRead = readPaciente.get();
-		Optional<PacienteVacinado> pacienteVacinado = this.pacienteVacinadoRepositorio.findOneById(2);
-		PacienteVacinado vacinado = pacienteVacinado.get();
-		Optional<Vacina> vacina1 = this.vacinaRepositorio.findOneById(1);
-		Vacina readVacina = vacina1.get();
+		Optional<Paciente> buscarPaciente = this.pacienteRepositorio.findOneByNome("VALDIR DALLA MONTA");
+		System.out.println("Resultado da busca: " + buscarPaciente.get());
 
-//		//DELETE
-//		Optional<Paciente> deletePaciente = this.pacienteRepositorio.findOneById(1);
-//		Paciente deletarPaciente = deletePaciente.get();
-//		manager.remove(deletarPaciente);
+		//DELETE
+		Optional<Paciente> consultaPaciente = this.pacienteRepositorio.findOneByNome("JOANA SILVA SOUZA");
+		this.pacienteVacinadoRepositorio.deleteByPacienteId(consultaPaciente.get().getId());
+		Optional<Paciente> verificaPacienteDeletado = this.pacienteRepositorio.findOneByNome("JOANA SILVA SOUZA");
+		System.out.println("Ao deletar o paciente vacinado é verificado se ele também foi apagado do banco de dados, se sim, vai aparecer Optional.empty: " + verificaPacienteDeletado);
 	}
 }

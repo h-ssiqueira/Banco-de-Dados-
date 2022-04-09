@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface PacienteVacinadoRepositorio extends JpaRepository<PacienteVacinado, Integer> {
-    Optional<PacienteVacinado> findOneById(int i);
+public interface PacienteVacinadoRepositorio extends JpaRepository<PacienteVacinado, Integer> 
+{
+    void deleteByPacienteId(Integer pacienteId);
 }
