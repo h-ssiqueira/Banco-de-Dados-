@@ -5,11 +5,11 @@
 Este é o repositório do nosso projeto final do Módulo de Banco de Dados do curso da Lets's Code.
 A proposta é desenvolver sistema para cadastros de Vacinação dos Postos de Saúde de uma certa cidade (Campinas do Sul, no nosso exemplo).
 
-Integrantes do grupo - Squad Verde:
--Camily Aleixo Randi
--Everton Sebastião do Nascimento
--Gabriela Trindade Ferreira
--Isadora Oliveira Rogieri
+Integrantes do grupo - Squad Verde: &nbsp;
+-Camily Aleixo Randi &nbsp;
+-Everton Sebastião do Nascimento &nbsp;
+-Gabriela Trindade Ferreira &nbsp;
+-Isadora Oliveira Rogieri &nbsp;
 
 &nbsp;
 Esse sistema possui:
