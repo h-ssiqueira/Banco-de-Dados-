@@ -3,6 +3,7 @@ package br.com.letscode.postosaude.vacina;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @ToString
@@ -10,12 +11,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name="\"VACINA\"", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "ID"),
-        @UniqueConstraint(columnNames = "CODIGO_VACINA"),
-        @UniqueConstraint(columnNames = "FABRICANTE"),
-        @UniqueConstraint(columnNames = "POSTO_SAUDE")
-})
+@Table(name="\"VACINA\"")
 public class Vacina {
 
     @Id
@@ -32,9 +28,28 @@ public class Vacina {
     @Column(nullable = false, name = "POSTO_SAUDE")
     private Integer posto_saude;
 
+    @Column
+    private LocalDate deleted_at;
+
+    @Column
+    private String deleted_by;
+
     public Vacina(Integer codigoVacina, String fabricante, Integer posto_saude) {
         this.codigoVacina = codigoVacina;
         this.fabricante = fabricante;
         this.posto_saude = posto_saude;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vacina vacina = (Vacina) o;
+        return Objects.equals(codigoVacina, vacina.codigoVacina) && Objects.equals(fabricante, vacina.fabricante);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigoVacina, fabricante);
     }
 }

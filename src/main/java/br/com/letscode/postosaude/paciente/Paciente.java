@@ -12,10 +12,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name="\"PACIENTE\"", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "ID"),
-        @UniqueConstraint(columnNames = "NOME"),
-        @UniqueConstraint(columnNames = "DATA_NASCIMENTO"),
-        @UniqueConstraint(columnNames = "SEXO")
+        @UniqueConstraint(columnNames = "NOME")
 })
 public class Paciente {
 
@@ -33,6 +30,12 @@ public class Paciente {
     @Enumerated(EnumType.STRING)
     @Column(name = "SEXO")
     private SexoEnum sexo;
+
+    @Column
+    private LocalDate deleted_at;
+
+    @Column
+    private String deleted_by;
 
     public Paciente(String nome, LocalDate data_nascimento, SexoEnum sexo) {
         this.nome = nome;

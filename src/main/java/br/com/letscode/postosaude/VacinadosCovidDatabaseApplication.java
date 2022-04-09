@@ -45,27 +45,34 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 
-		//CREATE
+		//CREATE -  VACINAÇÃO
 		Paciente paciente = new Paciente("JOANA SILVA SOUZA", LocalDate.of(1990,9,25), SexoEnum.FEMININO);
-		Profissional profSaude = new Profissional("69955983" , CargosEnum.PROFISSIONAL_SAUDE);
+		Profissional profSaude = new Profissional("José da Silva", "69955983");
 		Vacina vc = new Vacina(326402, "FUNDACAO OSWALDO CRUZ",2249278);
 		PacienteVacinado pv = new PacienteVacinado(paciente, profSaude,vc, LocalDate.now(), 2);
 		this.pacienteVacinadoRepositorio.save(pv);
 
-		//UPDATE
+		//UPDATE - PACIENTE
 		Optional<Paciente> pacienteParaAlterar = this.pacienteRepositorio.findOneByNome("IDIANA ANGELINA BERTOTTI");
 		Paciente pacienteAlterado = pacienteParaAlterar.get();
 		pacienteAlterado.setData_nascimento(LocalDate.of(1974, 05, 18));
 		this.pacienteRepositorio.save(pacienteAlterado);
 
-		//READ
+		//READ - BUSCAR PACIENTE
 		Optional<Paciente> buscarPaciente = this.pacienteRepositorio.findOneByNome("VALDIR DALLA MONTA");
 		System.out.println("Resultado da busca: " + buscarPaciente.get());
 
-		//DELETE
+		//DELETE - HARD DELETE PACIENTE
 		Optional<Paciente> consultaPaciente = this.pacienteRepositorio.findOneByNome("JOANA SILVA SOUZA");
 		this.pacienteVacinadoRepositorio.deleteByPacienteId(consultaPaciente.get().getId());
 		Optional<Paciente> verificaPacienteDeletado = this.pacienteRepositorio.findOneByNome("JOANA SILVA SOUZA");
 		System.out.println("Ao deletar o paciente vacinado é verificado se ele também foi apagado do banco de dados, se sim, vai aparecer Optional.empty: " + verificaPacienteDeletado);
+
+		//DELETE - SOFT DELETE PROFISSIONAL
+		Optional<Profissional> profissionalParaAlterar = this.profissionalRepositorio.findOneByCodigoRegistro("1964981");
+		Profissional profissional = profissionalParaAlterar.get();
+		profissional.setDeleted_at(LocalDate.now());
+		profissional.setDeleted_by("Camily");
+		this.profissionalRepositorio.save(profissional);
 	}
 }

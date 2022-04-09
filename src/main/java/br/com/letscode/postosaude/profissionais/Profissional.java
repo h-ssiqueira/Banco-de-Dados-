@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 @ToString
@@ -12,10 +13,10 @@ import java.util.Objects;
 @Setter
 @Entity
 @Table(name="\"PROFISSIONAL\"", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "ID"),
-        @UniqueConstraint(columnNames = "CODIGO_REGISTRO"),
-        @UniqueConstraint(columnNames = "CARGO")
+        @UniqueConstraint(columnNames = "CODIGO_REGISTRO")
 })
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name = "CARGO", discriminatorType = DiscriminatorType.STRING)
 public class Profissional {
 
     @Id
@@ -23,16 +24,26 @@ public class Profissional {
     @Column(name = "ID")
     private Integer id;
 
+    @Column (nullable = true, name = "NOME")
+    private String nome;
+
     @Column(nullable = false, name = "CODIGO_REGISTRO")
     private String codigoRegistro;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "CARGO")
+    @Column(name = "CARGO", insertable=false, updatable=false)
     private CargosEnum cargo;
 
-    public Profissional(String codigoRegistro, CargosEnum cargo) {
+    @Column
+    private LocalDate deleted_at;
+
+    @Column
+    private String deleted_by;
+
+    public Profissional(String nome, String codigoRegistro) {
+        this.nome = nome;
         this.codigoRegistro = codigoRegistro;
-        this.cargo = cargo;
+        this.cargo = CargosEnum.PROFISSIONAL_SAUDE;
     }
 
     @Override

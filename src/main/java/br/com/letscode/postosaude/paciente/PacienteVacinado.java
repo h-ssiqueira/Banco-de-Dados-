@@ -13,12 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name="\"PACIENTE_VACINADO\"", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "ID"),
-        @UniqueConstraint(columnNames = "PACIENTE_ID"),
-        @UniqueConstraint(columnNames = "PROFISSIONAL_ID"),
-        @UniqueConstraint(columnNames = "VACINA_ID"),
-        @UniqueConstraint(columnNames = "DATA_APLICACAO"),
-        @UniqueConstraint(columnNames = "DOSE")
+        @UniqueConstraint(columnNames = "VACINA_ID")
 })
 public class PacienteVacinado {
 
@@ -31,7 +26,7 @@ public class PacienteVacinado {
     @JoinColumn(name = "PACIENTE_ID", nullable = false)
     private Paciente paciente;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn (name = "PROFISSIONAL_ID", nullable = false)
     private Profissional profissional;
 
@@ -44,6 +39,12 @@ public class PacienteVacinado {
 
     @Column (nullable = false, name = "DOSE")
     private Integer dose;
+
+    @Column
+    private LocalDate deleted_at;
+
+    @Column
+    private String deleted_by;
 
     public PacienteVacinado(Paciente paciente, Profissional profissional, Vacina vacina, LocalDate data_aplicacao, Integer dose) {
         this.paciente = paciente;
