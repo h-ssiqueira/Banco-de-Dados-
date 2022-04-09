@@ -1,10 +1,15 @@
 -----------
 ## Projeto final - Módulo BANCO DE DADOS  :octocat:
 -----------
-&nbsp;
  
 Este é o repositório do nosso projeto final do Módulo de Banco de Dados do curso da Lets's Code.
 A proposta é desenvolver sistema para cadastros de Vacinação dos Postos de Saúde de uma certa cidade (Campinas do Sul, no nosso exemplo).
+
+Integrantes do grupo - Squad Verde:
+-Camily Aleixo Randi
+-Everton Sebastião do Nascimento
+-Gabriela Trindade Ferreira
+-Isadora Oliveira Rogieri
 
 &nbsp;
 Esse sistema possui:
