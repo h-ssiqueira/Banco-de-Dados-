@@ -58,7 +58,7 @@ Esse sistema possui:
 ### ! Regras de negócio
 * Cada pessoa pode tomar várias doses da vacina , mas será cadastrada apenas uma vez.
 * Cada vacina só pode ser registrada em uma aplicação.
-* Listagem de vacinas disponíveis não englobam aquelas que já foram usadas em aplicações anteriores, nem deletadas do sistema.
+* Cada profissional da sáude pode aplicar várias vacinas.
 * Possui os dois tipos de exclusão - Hard e Soft Delete.
 _______________________________________________________________________________________________________________________________________
 
