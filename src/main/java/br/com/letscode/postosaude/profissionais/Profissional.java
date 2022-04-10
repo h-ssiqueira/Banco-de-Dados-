@@ -15,8 +15,6 @@ import java.util.Objects;
 @Table(name="\"PROFISSIONAL\"", uniqueConstraints = {
         @UniqueConstraint(columnNames = "CODIGO_REGISTRO")
 })
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name = "CARGO", discriminatorType = DiscriminatorType.STRING)
 public class Profissional {
 
     @Id
@@ -24,14 +22,11 @@ public class Profissional {
     @Column(name = "ID")
     private Integer id;
 
-    @Column (nullable = true, name = "NOME")
-    private String nome;
-
     @Column(nullable = false, name = "CODIGO_REGISTRO")
     private String codigoRegistro;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "CARGO", insertable=false, updatable=false)
+    @Column(name = "CARGO", nullable = false)
     private CargosEnum cargo;
 
     @Column
@@ -40,10 +35,9 @@ public class Profissional {
     @Column
     private String deleted_by;
 
-    public Profissional(String nome, String codigoRegistro) {
-        this.nome = nome;
+    public Profissional( String codigoRegistro, CargosEnum cargo) {
         this.codigoRegistro = codigoRegistro;
-        this.cargo = CargosEnum.PROFISSIONAL_SAUDE;
+        this.cargo = cargo;
     }
 
     @Override

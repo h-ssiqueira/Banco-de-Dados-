@@ -8,7 +8,4 @@ import java.util.Optional;
 @Repository
 public interface PacienteRepositorio extends JpaRepository<Paciente, Integer> {
     Optional<Paciente> findOneByNome(String nome);
-    Optional<Paciente> deleteOneById(Integer id);
-    Optional<Paciente> findOneById(Integer i);
-    Optional<Paciente> removePacienteById(Integer id);
 }

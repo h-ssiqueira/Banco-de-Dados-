@@ -12,7 +12,9 @@ import javax.transaction.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 @Transactional
@@ -47,10 +49,24 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 
 		//CREATE -  VACINAÇÃO
 		Paciente paciente = new Paciente("JOANA SILVA SOUZA", LocalDate.of(1990,9,25), SexoEnum.FEMININO);
-		Profissional profSaude = new Profissional("José da Silva", "69955983");
+		Profissional profSaude = new Profissional("69955983", CargosEnum.PROFISSIONAL_SAUDE);
 		Vacina vc = new Vacina(326402, "FUNDACAO OSWALDO CRUZ",2249278);
 		PacienteVacinado pv = new PacienteVacinado(paciente, profSaude,vc, LocalDate.now(), 2);
 		this.pacienteVacinadoRepositorio.save(pv);
+
+		//READ - BUSCAR PACIENTE
+		Optional<Paciente> buscarPaciente = this.pacienteRepositorio.findOneByNome("VALDIR DALLA MONTA");
+		System.out.println("Resultado da busca: " + buscarPaciente.get());
+
+		//READ com filtros por nome do paciente ou por dose por sexo
+		List<Paciente> busca = this.pacienteVacinadoRepositorio.findAll().stream()
+				//.filter( p  -> p.getPaciente().getNome().contains("VALDIR"))
+				//.filter( p  -> p.getDose().equals(2)
+				.filter( p  -> p.getPaciente().getSexo().equals(SexoEnum.FEMININO))
+				.map(PacienteVacinado::getPaciente)
+				.collect(Collectors.toList());
+		System.out.println("Resultado da busca:");
+		busca.stream().forEach(System.out::println);
 
 		//UPDATE - PACIENTE
 		Optional<Paciente> pacienteParaAlterar = this.pacienteRepositorio.findOneByNome("IDIANA ANGELINA BERTOTTI");
@@ -58,36 +74,20 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 		pacienteAlterado.setData_nascimento(LocalDate.of(1974, 05, 18));
 		this.pacienteRepositorio.save(pacienteAlterado);
 
-		//READ - BUSCAR PACIENTE
 
 		// UPDATE em qualquer dado do paciente vacinado
 		Optional<PacienteVacinado> pacVacParaAlterar = this.pacienteVacinadoRepositorio.findOneById(20);
 		PacienteVacinado pacVacAlterado = pacVacParaAlterar.get();
 		pacVacAlterado.getVacina().setCodigoVacina(10500);
-		pacVacAlterado.getProfissional().setCodigoRegistro("1967984");
+		//alterando o profissional que vacinou o paciente
+		pacVacAlterado.setProfissional( profissionalRepositorio.findOneByCodigoRegistro("2096981").get());
+		//altera o codigo de registo do Profissional que vacinou
+		//pacVacAlterado.getProfissional().setCodigoRegistro("1234");
 		pacVacAlterado.getPaciente().setNome("ADAO ADALBERTO LIEBGOTTI");
 		this.pacienteVacinadoRepositorio.save(pacVacAlterado);
 
-		//READ
-		Optional<Paciente> buscarPaciente = this.pacienteRepositorio.findOneByNome("VALDIR DALLA MONTA");
-		System.out.println("Resultado da busca: " + buscarPaciente.get());
 
 		//DELETE - HARD DELETE PACIENTE
-		//READ com filtros por nome do paciente ou por dose por sexo
-		List<PacienteVacinado> repositorioAll = this.pacienteVacinadoRepositorio.findAll().stream()
-				.collect(Collectors.toList());
-		List<PacienteVacinado> buscar = repositorioAll.stream()
-				//.filter(( PacienteVacinado p ) -> p.getPaciente().getNome().contains("VALDIR"))
-				//.filter(( PacienteVacinado p ) -> p.getDose().equals(2)
-				.filter(( PacienteVacinado p ) -> p.getPaciente().getSexo().equals(SexoEnum.FEMININO)
-						).collect(Collectors.toList());
-		System.out.println("Resultado da busca:");
-		buscar.stream().forEach(System.out::println);
-
-
-
-
-		//DELETE
 		Optional<Paciente> consultaPaciente = this.pacienteRepositorio.findOneByNome("JOANA SILVA SOUZA");
 		this.pacienteVacinadoRepositorio.deleteByPacienteId(consultaPaciente.get().getId());
 		Optional<Paciente> verificaPacienteDeletado = this.pacienteRepositorio.findOneByNome("JOANA SILVA SOUZA");
@@ -99,5 +99,13 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 		profissional.setDeleted_at(LocalDate.now());
 		profissional.setDeleted_by("Camily");
 		this.profissionalRepositorio.save(profissional);
+
+		//READ - BUSCAR PROFISSIONAIS ATIVOS
+		List<Profissional> profAtivosList = this.profissionalRepositorio.findAll().stream()
+				    .filter(p -> p.getDeleted_at() == null )
+					.collect(Collectors.toList());
+		System.out.println("Resultado da busca PROFISSIONAIS ATIVOS:");
+		profAtivosList.stream().forEach(System.out::println);
+
 	}
 }
