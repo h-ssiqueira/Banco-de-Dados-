@@ -3,40 +3,41 @@
 -----------
  
 Este é o repositório do nosso projeto final do Módulo de Banco de Dados do curso da Lets's Code.
-A proposta é desenvolver sistema para cadastros de Vacinação dos Postos de Saúde de uma certa cidade (Campinas do Sul, no nosso exemplo).
+A proposta é desenvolver sistema para cadastros de Vacinação dos Postos de Saúde.
 
-Integrantes do grupo - Squad Verde: <br>
--Camily Aleixo Randi <br>
--Everton Sebastião do Nascimento <br>
--Gabriela Trindade Ferreira <br>
--Isadora Oliveira Rogieri <br>
+```
+Integrantes do grupo - Squad Verde :
+-Camily Aleixo Randi 
+-Everton Sebastião do Nascimento 
+-Gabriela Trindade Ferreira 
+-Isadora Oliveira Rogieri 
+```
 
 &nbsp;
 Esse sistema possui:
  
-        ⬛ Cadastro de Vacinas que chegaram ao posto;
+        ✅ Cadastro de Vacinação Efetuada, que engloba:
  
-        ⬛ Cadastro de Vacinação Efetuada, que engloba:
+             ☑️ Cadastro de Pessoa(paciente), caso ela ainda não esteja cadastrada no sistema;
  
-             ⬜ Cadastro de Pessoa(paciente), caso ela ainda não esteja cadastrada no sistema
- 
-        ⬛ Listagem de Vacinações efetuadas;
+        ✅ Listagem de Pacientes cadastrados;
 
-             ⬜ Com Filtros
+             ☑️ Com Filtros (busca por nome, dose , gênero)
              
-        ⬛ Listagem de Vacinas disponíveis;
+        ✅ Listagem de Profissionais Ativos;
 
-        ⬛ Alteração de cadastros previamente realizados;
+        ✅ Alteração de cadastros previamente realizados;
 
-             ⬜ Alterar dados da vacina
-             ⬜ Alterar dados da Pessoa
-             ⬜ Alterar dados da Vacinação Realizada
+             ☑️ Alterar dados da vacina
+             ☑️ Alterar dados da Paciente
+             ☑️ Alterar dados da Vacinação Realizada
 
-        ⬛ Deletar cadastros realizados;
+        ✅ Deletar cadastros realizados;
         
-            ⬜ Deletar Vacina
-            ⬜ Deletar Pessoa
-            ⬜ Deletar histórico de vacinação
+            ☑️ Deletar Vacina
+            ☑️ Deletar Paciente
+            ☑️ Deletar histórico de vacinação
+            ☑️ Deletar Profissional (Soft delete)
             
   
   _____________________________________________________________________________________________________________________________________
@@ -58,26 +59,7 @@ Esse sistema possui:
 * Cada pessoa pode tomar várias doses da vacina , mas será cadastrada apenas uma vez.
 * Cada vacina só pode ser registrada em uma aplicação.
 * Listagem de vacinas disponíveis não englobam aquelas que já foram usadas em aplicações anteriores, nem deletadas do sistema.
-* O tipo de exclusão é ambos: Hard delete e Soft Delete.
-
+* Possui os dois tipos de exclusão - Hard e Soft Delete.
 _______________________________________________________________________________________________________________________________________
 
-### Desenvolvimento
 
-| 😃        | Banco de Dados | Aplicação |  C   |  R   |   U   |   D|
-|-----------| ---------- | ---------- | --------  | ---------  |  -------  |  ----------|
-| E         | ⚫ | ⚫ | ⚫ |  ⚫   |  ⚫  | ⚫|
-| I         | ⚫ | ⚫ | ⚫ |  ⚫   |  ⚫  | ⚫|
-| G         | ⚫ | ⚫ | ⚫ |  ⚫   |  ⚫  | ⚫|
-| C         | ⚫ | ⚫ | ⚫ |  ⚫   |  ⚫  | ⚫|
-|  Aprovado | ⬜  | ⬜ | ⬜ | ⬜   | ⬜  | ⬜ |
-
- ```
- Legenda
-
-  🟢 Já trabalhei nessa parte do projeto
-  
-  🟡 Trabalhando nessa parte do projeto (especificar se possível)
-  
-  🔴 Encontrei algum problema aqui (precisa de ajuda ou revisar o projeto)
-```  
