@@ -1,9 +1,10 @@
 package br.com.letscode.postosaude;
 
-import br.com.letscode.postosaude.paciente.*;
-import br.com.letscode.postosaude.profissionais.*;
-import br.com.letscode.postosaude.vacina.Vacina;
-import br.com.letscode.postosaude.vacina.VacinaRepositorio;
+import br.com.letscode.postosaude.model.*;
+import br.com.letscode.postosaude.repository.PacienteRepositorio;
+import br.com.letscode.postosaude.repository.PacienteVacinadoRepositorio;
+import br.com.letscode.postosaude.repository.ProfissionalRepositorio;
+import br.com.letscode.postosaude.repository.VacinaRepositorio;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
