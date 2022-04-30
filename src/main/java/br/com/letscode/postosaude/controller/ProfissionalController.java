@@ -21,14 +21,6 @@ public class ProfissionalController {
     public List<Profissional> selecionarTodos(){
         return this.profissionalService.selecionarTodos();
     }
+
+
 }
-
-/*
-*     ✅ Cadastro de Vacinação Efetuada, que engloba:
-
-         ☑️ Cadastro de Pessoa(paciente), caso ela ainda não esteja cadastrada no sistema;
-
-    ✅ Listagem de Profissionais Ativos;
-
-        ☑️ Deletar Profissional (Soft delete)
-* */

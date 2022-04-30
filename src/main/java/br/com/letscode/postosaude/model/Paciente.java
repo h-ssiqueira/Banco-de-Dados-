@@ -3,6 +3,8 @@ package br.com.letscode.postosaude.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -19,6 +21,8 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
+//    @NotBlank(message = "Deve ser inserido ID")
+//    @NotNull(message = "Deve ser inserido um ID válido")
     private Integer id;
 
     @Column (nullable = false, unique=true, name = "NOME")

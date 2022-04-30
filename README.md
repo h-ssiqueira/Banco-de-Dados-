@@ -41,7 +41,30 @@ Esse sistema possui:
             
   
   _____________________________________________________________________________________________________________________________________
+
+&nbsp;
+Esse sistema possui as APIs:
+
+        X POST:
+             X️ Cadastro de Pessoa(paciente) (http://localhost:8080/paciente)
+             X️ Cadastro de Vacinação; (http://localhost:8080/pacientevacinado)
  
+        X GET;
+             X️ busca por nome (http://localhost:8080/paciente/{nome})
+             X️ busca por dose (http://localhost:8080/)
+             X️ busca por gênero (http://localhost:8080/paciente/{genero})
+             ✅   Listagem de Profissionais Ativos; (http://localhost:8080/profissional)
+
+        X PUT;
+             X️ Alterar dados da vacina (http://localhost:8080/)
+             X️ Alterar dados da Paciente (http://localhost:8080/paciente/{id})
+             X️ Alterar dados da Vacinação Realizada (http://localhost:8080/)
+
+        X Delete;
+             X️ Deletar Vacina (http://localhost:8080/)
+             X️ Deletar Paciente (http://localhost:8080/paciente/{id})
+             X️ Deletar histórico de vacinação (http://localhost:8080/)
+             X️ Deletar Profissional (Soft delete) (http://localhost:8080/)
         
  ### Planejamento
  
