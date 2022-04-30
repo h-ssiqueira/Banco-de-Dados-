@@ -2,9 +2,8 @@ package br.com.letscode.postosaude.controller;
 
 import br.com.letscode.postosaude.model.Profissional;
 import br.com.letscode.postosaude.services.ProfissionalService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +21,9 @@ public class ProfissionalController {
         return this.profissionalService.selecionarTodos();
     }
 
-
+    @DeleteMapping("{id}")
+    public ResponseEntity deleteProfissional(@PathVariable("id") Integer id){
+        this.profissionalService.deleteProfissional(id);
+        return ResponseEntity.ok("Profissional deletado com sucesso");
+    }
 }

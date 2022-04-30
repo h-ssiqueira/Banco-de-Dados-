@@ -10,10 +10,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/paciente")
-
 public class PacienteController {
     private final PacienteService pacienteService;
 
@@ -22,7 +22,7 @@ public class PacienteController {
     }
 
     @PostMapping
-    public ResponseEntity criaPaciente(@Valid Paciente paciente, BindingResult result){
+    public ResponseEntity criaPaciente(@Valid @RequestBody Paciente paciente, BindingResult result){
         ResponseEntity responseErro = new ResponseEntity("ERRO 500!", HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseEntity responseCreated = new ResponseEntity("Paciente criado com sucesso!", HttpStatus.CREATED);
         if(result.hasErrors()){
@@ -30,7 +30,6 @@ public class PacienteController {
         }
         this.pacienteService.criarPaciente(paciente);
         return responseCreated;
-
     }
 
     @PutMapping("{id}")
@@ -47,16 +46,17 @@ public class PacienteController {
     }
 
     @GetMapping("{nome}")
-    public String consultaPacienteN(@PathVariable("nome") String nome){
-        this.pacienteService.consultaPacienteN(nome);
-        return "redirect/paciente";
+    public ResponseEntity consultaPacienteN(@PathVariable("nome") String nome){
+        Paciente paciente = this.pacienteService.consultaPacienteN(nome);
+        ResponseEntity response = new ResponseEntity(paciente, HttpStatus.OK);
+        return response;
     }
 
-    @GetMapping("{genero}")
-    public String consultaPacienteG(@PathVariable("genero") SexoEnum genero){
-        this.pacienteService.consultaPacienteG(genero);
-        return "redirect/paciente";
+    @GetMapping("/genero/{genero}")
+    public ResponseEntity consultaPacienteG(@PathVariable("genero") SexoEnum genero){
+        List<Paciente> paciente = this.pacienteService.consultaPacienteG(genero);
+        ResponseEntity response = new ResponseEntity(paciente, HttpStatus.OK);
+        return response;
     }
-
 
 }

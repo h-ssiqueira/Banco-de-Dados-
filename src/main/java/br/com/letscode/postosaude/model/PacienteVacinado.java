@@ -24,6 +24,7 @@ public class PacienteVacinado {
     private Integer id;
 
     @OneToOne(cascade = CascadeType.ALL)
+//    @JoinTable(name = "PACIENTE_VACINADO", joinColumns = {@JoinColumn(name = "PACIENTE_ID")}, inverseJoinColumns = {@JoinColumn(name = "ID")})
     @JoinColumn(name = "PACIENTE_ID", nullable = false)
     private Paciente paciente;
 

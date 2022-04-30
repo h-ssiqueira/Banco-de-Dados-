@@ -21,11 +21,10 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-//    @NotBlank(message = "Deve ser inserido ID")
-//    @NotNull(message = "Deve ser inserido um ID válido")
     private Integer id;
 
     @Column (nullable = false, unique=true, name = "NOME")
+    @NotBlank(message = "Nome não informado")
     private String nome;
 
     @Column(nullable = false, name = "DATA_NASCIMENTO")

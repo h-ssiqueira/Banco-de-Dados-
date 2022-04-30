@@ -10,10 +10,6 @@ import java.util.Optional;
 @Repository
 public interface PacienteRepositorio extends JpaRepository<Paciente, Integer> {
     Optional<Paciente> findOneByNome(String nome);
-
-    //Paciente findById(Integer id);
-
     Paciente findByNome(String nome);
-
     Paciente findBySexo(SexoEnum genero);
 }

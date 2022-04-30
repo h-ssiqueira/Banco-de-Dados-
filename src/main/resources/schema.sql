@@ -1,5 +1,10 @@
 --- ddl
 
+ALTER TABLE IF EXISTS public.paciente_vacinado DROP CONSTRAINT  IF EXISTS  paciente_fk;
+ALTER TABLE IF EXISTS public.paciente_vacinado DROP CONSTRAINT  IF EXISTS  profissional_fk;
+ALTER TABLE IF EXISTS public.paciente_vacinado DROP CONSTRAINT  IF EXISTS  vacina_fk;
+
+DROP TABLE IF EXISTS public.paciente;
 CREATE TABLE public.paciente (
      id serial4 NOT NULL,
      data_nascimento date NOT NULL,
@@ -10,7 +15,7 @@ CREATE TABLE public.paciente (
      CONSTRAINT paciente_pkey PRIMARY KEY (id),
      CONSTRAINT paciente_unico UNIQUE (nome)
 );
-
+DROP TABLE IF EXISTS public.profissional;
 CREATE TABLE public.profissional (
      cargo varchar(31) NOT NULL,
      id serial4 NOT NULL,
@@ -21,6 +26,7 @@ CREATE TABLE public.profissional (
      CONSTRAINT profissional_pkey PRIMARY KEY (id),
      CONSTRAINT cod_profissional_unico UNIQUE (codigo_registro)
 );
+DROP TABLE IF EXISTS public.vacina;
 CREATE TABLE public.vacina (
     id serial4 NOT NULL,
     codigo_vacina int4 NOT NULL,
@@ -30,7 +36,7 @@ CREATE TABLE public.vacina (
     posto_saude int4 NOT NULL,
     CONSTRAINT vacina_pkey PRIMARY KEY (id)
 );
-
+DROP TABLE IF EXISTS public.paciente_vacinado;
 CREATE TABLE public.paciente_vacinado (
       id serial4 NOT NULL,
       data_aplicacao date NOT NULL,
