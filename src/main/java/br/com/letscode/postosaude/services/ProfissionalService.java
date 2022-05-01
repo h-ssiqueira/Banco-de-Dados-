@@ -23,14 +23,6 @@ public class ProfissionalService {
         return this.profissionalRepository.findAll().stream()
                 .filter(p -> p.getDeleted_at() == null )
                 .collect(Collectors.toList());
-        //System.out.println("Resultado da busca PROFISSIONAIS ATIVOS:");
-        //profAtivosList.stream().forEach(System.out::println);
-        //return this.profissionalRepository.findAll();
-    }
-
-    public void deleteProfissional(Integer id){
-        Profissional entidade = this.selecionaProfissionalById(id);
-        this.profissionalRepository.delete(entidade);
     }
 
     public Profissional updateProfissional(Integer id, Profissional profissional){

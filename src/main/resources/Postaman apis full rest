@@ -1,0 +1,335 @@
+{
+	"info": {
+		"_postman_id": "fe950830-8f27-4658-9069-0f2478d8a63a",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Paciente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"oliveira\",\n    \"data_nascimento\": \"2022-04-30\",\n    \"sexo\": \"FEMININO\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/paciente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"paciente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post PacienteVacinado Id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 32,\r\n        \"paciente\": {\r\n            \"id\": 1,\r\n            \"nome\": \"SOLANGE GEMA DALL ALBA\",\r\n            \"data_nascimento\": \"1969-11-07\",\r\n            \"sexo\": \"FEMININO\",\r\n            \"deleted_at\": null,\r\n            \"deleted_by\": null\r\n        },\r\n        \"profissional\": {\r\n            \"id\": 1,\r\n            \"codigoRegistro\": \"1967984\",\r\n            \"cargo\": \"PROFISSIONAL_SAUDE\",\r\n            \"deleted_at\": null,\r\n            \"deleted_by\": null\r\n        },\r\n        \"vacina\": {\r\n            \"id\": 360,\r\n            \"codigoVacina\": 10984,\r\n            \"fabricante\": \"FUNDACAO BUTANTAN\",\r\n            \"posto_saude\": 2249278,\r\n            \"deleted_at\": null,\r\n            \"deleted_by\": null\r\n        },\r\n        \"data_aplicacao\": \"2021-03-08\",\r\n        \"dose\": 2,\r\n        \"deleted_at\": null,\r\n        \"deleted_by\": null\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pacientevacinado",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pacientevacinado"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Paciente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/paciente/delete/322",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"paciente",
+						"delete",
+						"322"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete PacienteVacinado",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pacientevacinado/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pacientevacinado",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Profissional",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"deleted_by\": \"Rhuan\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/profissional/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"profissional",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Vacina",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"deleted_by\": \"Rhuan\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/vacina/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vacina",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Profissionais",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/profissional",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"profissional"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Paciente Genero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/paciente/genero/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"paciente",
+						"genero",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Paciente Nome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/paciente/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"paciente",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get PacienteVacinado Dose",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pacientevacinado/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pacientevacinado",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Paciente Nome",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/paciente/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"paciente",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put PacienteVacinado Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"paciente\": {\r\n            \"id\": 1,\r\n            \"nome\": \"SOLANGE GEMA DALL ALBA\",\r\n            \"data_nascimento\": \"1969-11-07\",\r\n            \"sexo\": \"FEMININO\",\r\n            \"deleted_at\": null,\r\n            \"deleted_by\": null\r\n        },\r\n        \"profissional\": {\r\n            \"id\": 1,\r\n            \"codigoRegistro\": \"1967984\",\r\n            \"cargo\": \"PROFISSIONAL_SAUDE\",\r\n            \"deleted_at\": null,\r\n            \"deleted_by\": null\r\n        },\r\n        \"vacina\": {\r\n            \"id\": 360,\r\n            \"codigoVacina\": 10984,\r\n            \"fabricante\": \"FUNDACAO BUTANTAN\",\r\n            \"posto_saude\": 2249278,\r\n            \"deleted_at\": null,\r\n            \"deleted_by\": null\r\n        },\r\n        \"data_aplicacao\": \"2024-04-30\",\r\n        \"dose\": 2,\r\n        \"deleted_at\": null,\r\n        \"deleted_by\": null\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pacientevacinado/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pacientevacinado",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Vacina",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"posto_saude\": 15\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/vacina/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vacina",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

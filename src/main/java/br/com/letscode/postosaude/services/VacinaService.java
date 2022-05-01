@@ -12,7 +12,6 @@ public class VacinaService {
     private final PacienteVacinadoRepositorio pacienteVacinadoRepositorio;
 
     public VacinaService(VacinaRepositorio vacinaRepositorio, PacienteVacinadoRepositorio pacienteVacinadoRepositorio){
-
         this.vacinaRepositorio = vacinaRepositorio;
         this.pacienteVacinadoRepositorio = pacienteVacinadoRepositorio;
     }

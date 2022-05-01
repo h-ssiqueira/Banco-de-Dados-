@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -25,6 +26,7 @@ public class Paciente {
 
     @Column (nullable = false, unique=true, name = "NOME")
     @NotBlank(message = "Nome não informado")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "Nome inválido")
     private String nome;
 
     @Column(nullable = false, name = "DATA_NASCIMENTO")

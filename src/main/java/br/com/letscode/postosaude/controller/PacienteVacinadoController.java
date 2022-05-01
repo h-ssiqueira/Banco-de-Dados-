@@ -1,16 +1,17 @@
 package br.com.letscode.postosaude.controller;
+import br.com.letscode.postosaude.exception.PacienteVacinadoNaoEncontradoException;
 import br.com.letscode.postosaude.model.PacienteVacinado;
 import br.com.letscode.postosaude.services.PacienteVacinadoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@Slf4j
 @RequestMapping("/pacientevacinado")
 public class PacienteVacinadoController {
     private final PacienteVacinadoService pacienteVacinadoService;
@@ -20,23 +21,31 @@ public class PacienteVacinadoController {
     }
 
     @PostMapping
-    public ResponseEntity criaPacienteVacinado(@Valid @RequestBody PacienteVacinado pacienteVacinado, BindingResult result){
-        ResponseEntity responseErro = new ResponseEntity("ERRO 500!", HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity criaPacienteVacinado(@Valid @RequestBody PacienteVacinado pacienteVacinado){
+        ResponseEntity responseErro = new ResponseEntity("PacienteVacinado já existente/Id não identificado!", HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseEntity responseCreated = new ResponseEntity("PacienteVacinado criado com sucesso!", HttpStatus.CREATED);
-        if(result.hasErrors()){
+        try{
+            this.pacienteVacinadoService.criarPacienteVacinado(pacienteVacinado);
+        }catch (Exception e){
+            log.info("Paciente já existente no sistema!");
             return responseErro;
         }
-        this.pacienteVacinadoService.criarPacienteVacinado(pacienteVacinado);
         return responseCreated;
     }
 
     @PutMapping("{id}")
     public ResponseEntity updatePacientevacinado(@PathVariable("id") Integer id, @RequestBody PacienteVacinado pacienteVacinado){
-        this.pacienteVacinadoService.updatePacienteVacinado(id, pacienteVacinado);
+        ResponseEntity responseErro = new ResponseEntity("Nome inválido", HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseEntity response = new ResponseEntity("Paciente vacinado alterado com sucesso", HttpStatus.OK);
+        try {
+            this.pacienteVacinadoService.updatePacienteVacinado(id, pacienteVacinado);
+        }catch (Exception e){
+            log.info("Nome inválido");
+            return responseErro;
+        }
         return response;
     }
-    //@Transactional
+
     @DeleteMapping("{id}")
     public ResponseEntity deletePacientevacinado(@PathVariable("id") Integer id){
         this.pacienteVacinadoService.deletarPacienteVacinado(id);
@@ -46,7 +55,18 @@ public class PacienteVacinadoController {
     @GetMapping("{dose}")
     public ResponseEntity consultarPacientevacinado(@PathVariable("dose") Integer dose){
         List<PacienteVacinado> pacientes = this.pacienteVacinadoService.consultarPacienteVacinado(dose);
-        ResponseEntity response = new ResponseEntity(pacientes, HttpStatus.OK);
+        if(!pacientes.isEmpty()) {
+            ResponseEntity response = new ResponseEntity(pacientes, HttpStatus.OK);
+            return response;
+        }
+        log.info(String.valueOf(new PacienteVacinadoNaoEncontradoException()));
+        return tratarPacienteVacinadoNaoEncontrado(new PacienteVacinadoNaoEncontradoException());
+    }
+
+    @ExceptionHandler
+    private ResponseEntity tratarPacienteVacinadoNaoEncontrado(PacienteVacinadoNaoEncontradoException e){
+        ResponseEntity response = new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        log.info("Cadastro de vacinação não encontrado.");
         return response;
     }
 }

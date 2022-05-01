@@ -3,19 +3,19 @@ package br.com.letscode.postosaude.services;
 import br.com.letscode.postosaude.exception.PacienteCadastradoException;
 import br.com.letscode.postosaude.exception.PacienteNaoEncontradoException;
 import br.com.letscode.postosaude.model.Paciente;
-import br.com.letscode.postosaude.model.PacienteVacinado;
 import br.com.letscode.postosaude.model.SexoEnum;
 import br.com.letscode.postosaude.repository.PacienteRepositorio;
 import br.com.letscode.postosaude.repository.PacienteVacinadoRepositorio;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class PacienteService {
     private static final Logger LOGGER = LoggerFactory.getLogger(PacienteService.class);
     private final PacienteRepositorio pacienteRepositorio;
@@ -46,9 +46,9 @@ public class PacienteService {
     }
 
     public List<Paciente> consultaPacienteG(SexoEnum genero){
-       return this.pacienteRepositorio.findAll().stream()
-           .filter(p-> p.getSexo().equals(genero))
-           .collect(Collectors.toList());
+        return this.pacienteRepositorio.findAll().stream()
+            .filter(p-> p.getSexo().equals(genero))
+            .collect(Collectors.toList());
     }
 
     public Paciente updatePaciente(Integer id, Paciente paciente){
