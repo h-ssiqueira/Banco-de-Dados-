@@ -3,6 +3,7 @@ import br.com.letscode.postosaude.model.PacienteVacinado;
 import br.com.letscode.postosaude.services.PacienteVacinadoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public class PacienteVacinadoController {
         ResponseEntity response = new ResponseEntity("Paciente vacinado alterado com sucesso", HttpStatus.OK);
         return response;
     }
-
+    //@Transactional
     @DeleteMapping("{id}")
     public ResponseEntity deletePacientevacinado(@PathVariable("id") Integer id){
         this.pacienteVacinadoService.deletarPacienteVacinado(id);

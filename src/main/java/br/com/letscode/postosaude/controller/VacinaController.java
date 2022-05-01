@@ -5,6 +5,7 @@ import br.com.letscode.postosaude.repository.VacinaRepositorio;
 import br.com.letscode.postosaude.services.VacinaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,7 +23,7 @@ public class VacinaController {
         ResponseEntity response = new ResponseEntity("Vacina atualizada com sucesso", HttpStatus.OK);
         return response;
     }
-
+    @Transactional
     @DeleteMapping("{id}")
     public ResponseEntity deleteVacina(@PathVariable("id") Integer id){
         this.vacinaService.deleteVacina(id);

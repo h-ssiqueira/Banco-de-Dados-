@@ -46,7 +46,7 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
+		/*
 		//CREATE -  VACINAÇÃO
 		Paciente paciente = new Paciente("JOANA SILVA SOUZA", LocalDate.of(1990,9,25), SexoEnum.FEMININO);
 		Profissional profSaude = new Profissional("69955983", CargosEnum.PROFISSIONAL_SAUDE);
@@ -106,6 +106,6 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 					.collect(Collectors.toList());
 		System.out.println("Resultado da busca PROFISSIONAIS ATIVOS:");
 		profAtivosList.stream().forEach(System.out::println);
-
+*/
 	}
 }

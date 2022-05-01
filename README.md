@@ -50,21 +50,21 @@ Esse sistema possui as APIs:
              ✅️ Cadastro de Vacinação; (http://localhost:8080/pacientevacinado)
  
         X GET;
-             ✅️ busca por nome (http://localhost:8080/paciente/{nome})
-             ✅️ busca por dose (http://localhost:8080/pacientevacinado/{dose})
-             ✅️ busca por gênero (http://localhost:8080/paciente/{genero})
-             ✅   Listagem de Profissionais Ativos; (http://localhost:8080/profissional)
+             ✅️ Busca por nome (http://localhost:8080/paciente/{nome})
+             ✅️ Busca por dose (http://localhost:8080/pacientevacinado/{dose})
+             ✅️ Busca por gênero (http://localhost:8080/paciente/{genero})
+             ✅  Listagem de Profissionais Ativos; (http://localhost:8080/profissional)
 
         X PUT;
-             X️ Alterar dados da vacina (http://localhost:8080/vacina/{id})
-             X️ Alterar dados da Paciente (http://localhost:8080/paciente/{id})
-             X️ Alterar dados da Vacinação Realizada (http://localhost:8080/{id})
+             ✅️ Alterar dados da vacina (http://localhost:8080/vacina/{id})
+             ✅️ Alterar dados da Paciente (http://localhost:8080/paciente/{id})
+             ✅️ Alterar dados da Vacinação Realizada (http://localhost:8080/{id})
 
         X Delete;
-             X️ Deletar Vacina (http://localhost:8080/vacina/{id})
-             X️ Deletar Paciente (http://localhost:8080/paciente/{id})
-             X️ Deletar histórico de vacinação (http://localhost:8080/{id})
-             X️ Deletar Profissional (Soft delete) (http://localhost:8080/)
+             ✅️ Deletar Vacina (http://localhost:8080/vacina/{id})
+             ✅️ Deletar Paciente (http://localhost:8080/paciente/delete/{id})
+             ✅️ Deletar histórico de vacinação (http://localhost:8080/{id})
+             ✅️ Deletar Profissional (Soft delete) (http://localhost:8080/)
         
  ### Planejamento
  

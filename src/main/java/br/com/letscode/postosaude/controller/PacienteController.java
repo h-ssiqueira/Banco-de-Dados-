@@ -1,11 +1,13 @@
 package br.com.letscode.postosaude.controller;
 
+import br.com.letscode.postosaude.exception.PacienteNaoEncontradoException;
 import br.com.letscode.postosaude.model.Paciente;
 import br.com.letscode.postosaude.model.SexoEnum;
 import br.com.letscode.postosaude.services.PacienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +41,8 @@ public class PacienteController {
         return response;
     }
 
-    @DeleteMapping("{id}")
+    @Transactional
+    @DeleteMapping("delete/{id}")
     public ResponseEntity deletePaciente(@PathVariable("id") Integer id){
         this.pacienteService.deletePaciente(id);
         return ResponseEntity.ok("Paciente deletado com sucesso");
@@ -57,6 +60,12 @@ public class PacienteController {
         List<Paciente> paciente = this.pacienteService.consultaPacienteG(genero);
         ResponseEntity response = new ResponseEntity(paciente, HttpStatus.OK);
         return response;
+    }
+
+    @ExceptionHandler
+    public ResponseEntity tratarPacienteNaoEncontrado(PacienteNaoEncontradoException e){
+            ResponseEntity response = new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+            return  response;
     }
 
 }

@@ -23,16 +23,16 @@ public class PacienteVacinado {
     @Column(name = "ID")
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
 //    @JoinTable(name = "PACIENTE_VACINADO", joinColumns = {@JoinColumn(name = "PACIENTE_ID")}, inverseJoinColumns = {@JoinColumn(name = "ID")})
     @JoinColumn(name = "PACIENTE_ID", nullable = false)
     private Paciente paciente;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn (name = "PROFISSIONAL_ID", nullable = false)
     private Profissional profissional;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn (name = "VACINA_ID", nullable = false)
     private Vacina vacina;
 

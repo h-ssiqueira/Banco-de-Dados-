@@ -2,22 +2,25 @@ package br.com.letscode.postosaude.services;
 
 import br.com.letscode.postosaude.exception.VacinaNaoEncontradaException;
 import br.com.letscode.postosaude.model.Vacina;
+import br.com.letscode.postosaude.repository.PacienteVacinadoRepositorio;
 import br.com.letscode.postosaude.repository.VacinaRepositorio;
 import org.springframework.stereotype.Service;
 
 @Service
 public class VacinaService {
     private final VacinaRepositorio vacinaRepositorio;
+    private final PacienteVacinadoRepositorio pacienteVacinadoRepositorio;
 
-    public VacinaService(VacinaRepositorio vacinaRepositorio){
+    public VacinaService(VacinaRepositorio vacinaRepositorio, PacienteVacinadoRepositorio pacienteVacinadoRepositorio){
 
         this.vacinaRepositorio = vacinaRepositorio;
+        this.pacienteVacinadoRepositorio = pacienteVacinadoRepositorio;
     }
 
     public void deleteVacina(Integer id){
         Vacina entidade = this.selecionaVacinaByid(id);
+        this.pacienteVacinadoRepositorio.deleteByVacinaId(entidade.getId());
         this.vacinaRepositorio.delete(entidade);
-        // TODO: 30/04/2022 Adicionar um update para atualizar quem deletou e quando
     }
 
     public Vacina updateVacina(Integer id, Vacina vacina){

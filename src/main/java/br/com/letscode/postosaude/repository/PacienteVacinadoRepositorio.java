@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface PacienteVacinadoRepositorio extends JpaRepository<PacienteVacinado, Integer>
 {
     void deleteByPacienteId(Integer pacienteId);
+    void deleteByVacinaId(Integer id);
     Optional<PacienteVacinado> findOneById(Integer id);
 //    void delete(Paciente entidade);
 }

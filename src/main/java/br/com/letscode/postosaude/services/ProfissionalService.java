@@ -7,6 +7,7 @@ import br.com.letscode.postosaude.model.Profissional;
 import br.com.letscode.postosaude.repository.ProfissionalRepositorio;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,13 @@ public class ProfissionalService {
     public void deleteProfissional(Integer id){
         Profissional entidade = this.selecionaProfissionalById(id);
         this.profissionalRepository.delete(entidade);
+    }
+
+    public Profissional updateProfissional(Integer id, Profissional profissional){
+        Profissional entidade = this.selecionaProfissionalById(id);
+        entidade.setDeleted_by(profissional.getDeleted_by());
+        entidade.setDeleted_at(LocalDate.now());
+        return this.profissionalRepository.save(entidade);
     }
 
     private Profissional selecionaProfissionalById(Integer id){
