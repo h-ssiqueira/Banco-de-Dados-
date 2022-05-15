@@ -47,7 +47,12 @@ public class Paciente {
         this.data_nascimento = data_nascimento;
         this.sexo = sexo;
     }
-
+    public Paciente(Integer id, String nome, LocalDate data_nascimento, SexoEnum sexo) {
+        this.id = id;
+        this.nome = nome;
+        this.data_nascimento = data_nascimento;
+        this.sexo = sexo;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

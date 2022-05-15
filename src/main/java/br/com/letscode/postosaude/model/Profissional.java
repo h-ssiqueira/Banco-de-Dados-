@@ -39,7 +39,11 @@ public class Profissional {
         this.codigoRegistro = codigoRegistro;
         this.cargo = cargo;
     }
-
+    public Profissional( String codigoRegistro, CargosEnum cargo, LocalDate deleted_at) {
+        this.codigoRegistro = codigoRegistro;
+        this.cargo = cargo;
+        this.deleted_at = null;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
