@@ -19,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 @ExtendWith(MockitoExtension.class)
 public class ProfissionalServiceTest {
@@ -30,18 +31,22 @@ public class ProfissionalServiceTest {
 
     @Test
     @DisplayName("Teste atualizar Profissional service")
-    public void updateProfissionalTeste(){
-        Profissional entidade = this.profissionalRepositorio.findById(1).orElseThrow(ProfissionalNaoEncontradoException::new);
+    void updateProfissionalTeste(){
+        Profissional profissional = new Profissional(1,"123", CargosEnum.PROFISSIONAL_SAUDE, null);
+        Profissional profissionalRetorno = new Profissional(2,"1234", CargosEnum.PROFISSIONAL_SAUDE, LocalDate.parse("1999-05-15"));
 
-        entidade.setDeleted_at(LocalDate.now());
-        Mockito.when(profissionalRepositorio.save(entidade)).thenReturn(entidade);
+        Mockito.when(profissionalRepositorio.findById(profissional.getId())).thenReturn(Optional.of(profissional));
+        Mockito.when(profissionalRepositorio.save(profissional)).thenReturn(profissional);
 
-        Assertions.assertNotNull(entidade);
+        profissionalRetorno = profissionalService.updateProfissional(1, profissional);
+
+        Assertions.assertNotNull(profissionalRetorno);
+        Assertions.assertEquals(profissionalRetorno.getDeleted_at(),profissional.getDeleted_at());
     }
 
     @Test
     @DisplayName("Teste consulta Profissional service")
-    public void consultaListaProfissionalTeste(){
+    void consultaListaProfissionalTeste(){
         List<Profissional> profissionalList = new ArrayList<>();
         profissionalList.add(new Profissional("Profissional 1", CargosEnum.PROFISSIONAL_SAUDE, null));
         profissionalList.add(new Profissional("Profissional 2", CargosEnum.PROFISSIONAL_SAUDE, null));

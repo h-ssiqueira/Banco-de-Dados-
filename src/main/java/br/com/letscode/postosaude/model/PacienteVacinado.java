@@ -56,6 +56,15 @@ public class PacienteVacinado {
         this.dose = dose;
     }
 
+    public PacienteVacinado(Integer id,Paciente paciente, Profissional profissional, Vacina vacina, LocalDate data_aplicacao, Integer dose) {
+        this.id = id;
+        this.paciente = paciente;
+        this.profissional = profissional;
+        this.vacina = vacina;
+        this.data_aplicacao = data_aplicacao;
+        this.dose = dose;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

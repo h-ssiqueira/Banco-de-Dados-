@@ -9,6 +9,7 @@ import br.com.letscode.postosaude.services.PacienteService;
 import br.com.letscode.postosaude.services.PacienteVacinadoService;
 import br.com.letscode.postosaude.repository.PacienteVacinadoRepositorio;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,6 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,7 +34,7 @@ public class PacienteVacinadoServiceTest {
 
     @Test
     @DisplayName("Teste criar PacienteVacinado service")
-    public void criarPacienteVacinadoTeste(){
+    void criarPacienteVacinadoTeste(){
         PacienteVacinado criarPacienteVacinado = new PacienteVacinado();
         criarPacienteVacinado.setPaciente(new Paciente("Rodrigo",LocalDate.now(), SexoEnum.MASCULINO));
         criarPacienteVacinado.setVacina(new Vacina(1,"postinho",15));
@@ -60,19 +62,31 @@ public class PacienteVacinadoServiceTest {
 
     @Test
     @DisplayName("Teste atualizar PacienteVacinado service")
-    public void updatePacienteVacinadoTeste(){
-        PacienteVacinado entidade;
-        Mockito.when(entidade = this.pacienteVacinadoRepositorio.findById(1).orElseThrow(PacienteVacinadoNaoEncontradoException::new)).thenReturn(entidade);
+    void updatePacienteVacinadoTeste(){
+        PacienteVacinado entidade = new PacienteVacinado(1,
+                                                        new Paciente(1,"Gloria",LocalDate.parse("1980-01-01"),SexoEnum.FEMININO),
+                                                        new Profissional("1",CargosEnum.PROFISSIONAL_SAUDE, null),
+                                                        new Vacina(1,123,"Hospital",333),
+                                                        LocalDate.parse("2022-05-16"),
+                                                        3);
         entidade.setDeleted_by("Rhuan");
         entidade.setDeleted_at(LocalDate.now());
+        Mockito.when(pacienteVacinadoRepositorio.findById(1)).thenReturn(Optional.of(entidade));
         Mockito.when(pacienteVacinadoRepositorio.save(entidade)).thenReturn(entidade);
 
-        Assertions.assertNotNull(entidade);
+        PacienteVacinado retorno = pacienteVacinadoService.updatePacienteVacinado(1,entidade);
+        
+        Assertions.assertNotNull(retorno);
+        Assertions.assertEquals(entidade.getVacina(), retorno.getVacina());
+        Assertions.assertEquals(entidade.getDose(), retorno.getDose());
+        Assertions.assertEquals(entidade.getData_aplicacao(), retorno.getData_aplicacao());
+        Assertions.assertEquals(entidade.getPaciente(), retorno.getPaciente());
+        Assertions.assertEquals(entidade.getProfissional(), retorno.getProfissional());
     }
 
     @Test
     @DisplayName("Teste Consulta PacienteVacinado service")
-    public void consultaPacienteVacinadoTeste(){
+    void consultaPacienteVacinadoTeste(){
         Paciente paciente = new Paciente(1,"Fulano", LocalDate.now(), SexoEnum.MASCULINO);
         Profissional profissional = new  Profissional("Profissional 1", CargosEnum.PROFISSIONAL_SAUDE, null);
         Vacina vacina = new Vacina(10984,"FUNDACAO BUTANTAN", 2249278);
@@ -91,7 +105,12 @@ public class PacienteVacinadoServiceTest {
 
     @Test
     @DisplayName("Teste deletar PacienteVacinado service")
-    public void deletarPacienteVacinadoTeste(){
-
+    @Disabled
+    void deletarPacienteVacinadoTeste(){
+        Paciente paciente = new Paciente(1,"Fulano", LocalDate.now(), SexoEnum.MASCULINO);
+        Profissional profissional = new  Profissional("Profissional 1", CargosEnum.PROFISSIONAL_SAUDE, null);
+        Vacina vacina = new Vacina(10984,"FUNDACAO BUTANTAN", 2249278);
+        List<PacienteVacinado> entidadeList = new ArrayList<>();
+        entidadeList.add(new PacienteVacinado(paciente, profissional,vacina, LocalDate.now(), 1));
     }
 }

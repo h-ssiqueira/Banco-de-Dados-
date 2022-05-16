@@ -44,6 +44,14 @@ public class Profissional {
         this.cargo = cargo;
         this.deleted_at = null;
     }
+
+    public Profissional( Integer id, String codigoRegistro, CargosEnum cargo, LocalDate deleted_at) {
+        this.id = id;
+        this.codigoRegistro = codigoRegistro;
+        this.cargo = cargo;
+        this.deleted_at = null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

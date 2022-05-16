@@ -1,4 +1,21 @@
 -----------
+## Projeto final - Módulo Testes Automatizados I :octocat:
+-----------
+A proposta é desenvolver testes unitários e de integração baseados nas regras de negócio do posto de vacinação.
+
+```
+Integrantes do grupo - Squad Vermelho :
+-Edson Valentim Hernandes
+-Henrique Sartori Siqueira
+-Marina Linguanoto Gajego
+-Rhuan Gabriel de Oliveira Martins
+-Willian Cesar Visicati
+```
+
+Esse sistema contém os testes relacionados às camadas controller e service, considerando os testes de integração e os testes unit´
+ários. Sendo que cada diretório possui quatro classes, cada uma com suas respectivas ações nas regras de negócio do projeto.
+
+-----------
 ## Projeto final - Módulo Programação Web II :octocat:
 -----------
 A proposta é desenvolver as APIs baseadas nas regras de negócio do posto de vacinação.

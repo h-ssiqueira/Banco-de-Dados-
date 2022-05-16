@@ -39,8 +39,6 @@ public class PacienteControllerTest {
 
         /*Mockito.when(pacienteRepository.())
                 .thenReturn(pacientesList);*/
-
-
     }
 
     @Test

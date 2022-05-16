@@ -40,7 +40,14 @@ public class Vacina {
         this.posto_saude = posto_saude;
     }
 
-    @Override
+    public Vacina(Integer id,Integer codigoVacina, String fabricante, Integer posto_saude) {
+        this.id = id;
+        this.codigoVacina = codigoVacina;
+        this.fabricante = fabricante;
+        this.posto_saude = posto_saude;
+    }
+
+                  @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
