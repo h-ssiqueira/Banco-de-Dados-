@@ -1,6 +1,5 @@
 package br.com.letscode.postosaude.testesUnitariosService;
 
-import br.com.letscode.postosaude.exception.PacienteNaoEncontradoException;
 import br.com.letscode.postosaude.model.Paciente;
 import br.com.letscode.postosaude.model.SexoEnum;
 import br.com.letscode.postosaude.repository.PacienteRepositorio;
@@ -15,8 +14,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
-import java.sql.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,15 +1,9 @@
 package br.com.letscode.postosaude.testesUnitariosService;
 
-import br.com.letscode.postosaude.exception.PacienteNaoEncontradoException;
-import br.com.letscode.postosaude.exception.PacienteVacinadoNaoEncontradoException;
-import br.com.letscode.postosaude.exception.VacinaNaoEncontradaException;
 import br.com.letscode.postosaude.model.*;
-import br.com.letscode.postosaude.repository.PacienteRepositorio;
-import br.com.letscode.postosaude.services.PacienteService;
 import br.com.letscode.postosaude.services.PacienteVacinadoService;
 import br.com.letscode.postosaude.repository.PacienteVacinadoRepositorio;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -93,9 +87,10 @@ public class PacienteVacinadoServiceTest {
         List<PacienteVacinado> entidadeList = new ArrayList<>();
         entidadeList.add(new PacienteVacinado(paciente, profissional,vacina, LocalDate.now(), 1));
 
-        Mockito.when(pacienteVacinadoRepositorio.findAll().stream()
-                .filter(pv-> pv.getDose().equals(1)).collect(Collectors.toList()))
-                .thenReturn(entidadeList);
+        Mockito.when(pacienteVacinadoRepositorio.findAll()
+                        .stream()
+                        .filter(pv-> pv.getDose().equals(1)).collect(Collectors.toList()))
+                        .thenReturn(entidadeList);
 
         List<PacienteVacinado> pacienteVacinados = pacienteVacinadoService.consultarPacienteVacinado(1);
         Assertions.assertNotNull(pacienteVacinados);
@@ -105,12 +100,26 @@ public class PacienteVacinadoServiceTest {
 
     @Test
     @DisplayName("Teste deletar PacienteVacinado service")
-    @Disabled
     void deletarPacienteVacinadoTeste(){
-        Paciente paciente = new Paciente(1,"Fulano", LocalDate.now(), SexoEnum.MASCULINO);
-        Profissional profissional = new  Profissional("Profissional 1", CargosEnum.PROFISSIONAL_SAUDE, null);
-        Vacina vacina = new Vacina(10984,"FUNDACAO BUTANTAN", 2249278);
-        List<PacienteVacinado> entidadeList = new ArrayList<>();
-        entidadeList.add(new PacienteVacinado(paciente, profissional,vacina, LocalDate.now(), 1));
+        PacienteVacinado novo = new PacienteVacinado(1,
+                new Paciente(1,"Gloria",LocalDate.parse("1980-01-01"),SexoEnum.FEMININO),
+                new Profissional("1",CargosEnum.PROFISSIONAL_SAUDE, null),
+                new Vacina(1,123,"Hospital",333),
+                LocalDate.parse("2022-05-16"),
+                3);
+        Optional<PacienteVacinado> retorno = Optional.of(new PacienteVacinado());
+
+        Mockito.when(pacienteVacinadoRepositorio.findById(novo.getId()))
+                .thenReturn(Optional.of(novo));
+
+        Mockito.doNothing()
+                .when(pacienteVacinadoRepositorio)
+                .delete(novo);
+
+        pacienteVacinadoService.deletarPacienteVacinado(novo.getId());
+
+        Assertions.assertNotNull(retorno);
+        Mockito.verify(pacienteVacinadoRepositorio, Mockito.times(1))
+                .delete(novo);
     }
 }

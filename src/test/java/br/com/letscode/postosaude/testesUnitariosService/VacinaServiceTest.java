@@ -1,12 +1,6 @@
 package br.com.letscode.postosaude.testesUnitariosService;
 
-import br.com.letscode.postosaude.exception.ProfissionalNaoEncontradoException;
-import br.com.letscode.postosaude.exception.VacinaNaoEncontradaException;
-import br.com.letscode.postosaude.model.PacienteVacinado;
-import br.com.letscode.postosaude.model.Profissional;
-import br.com.letscode.postosaude.repository.PacienteRepositorio;
 import br.com.letscode.postosaude.repository.PacienteVacinadoRepositorio;
-import br.com.letscode.postosaude.services.PacienteService;
 import br.com.letscode.postosaude.services.VacinaService;
 import br.com.letscode.postosaude.repository.VacinaRepositorio;
 import br.com.letscode.postosaude.model.Vacina;
@@ -19,9 +13,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
 import java.util.Optional;
-import java.util.OptionalInt;
 
 @ExtendWith(MockitoExtension.class)
 public class VacinaServiceTest {
@@ -39,7 +31,8 @@ public class VacinaServiceTest {
         Vacina novo = new Vacina(1,10984,"FUNDACAO BUTANTAN", 2249278);
         Optional<Vacina> retorno = Optional.of(new Vacina());
 
-        Mockito.when(vacinaRepositorio.findById(novo.getId())).thenReturn(Optional.of(novo));
+        Mockito.when(vacinaRepositorio.findById(novo.getId()))
+                .thenReturn(Optional.of(novo));
 
         Mockito.doNothing().when(pacienteVacinadoRepositorio).deleteByVacinaId(novo.getId());
         Mockito.doNothing().when(vacinaRepositorio).delete(novo);

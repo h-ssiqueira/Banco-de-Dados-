@@ -18,32 +18,32 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
-@Transactional
-public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
+//@Transactional
+public class VacinadosCovidDatabaseApplication{
 
-	@PersistenceContext
-	private EntityManager manager;
-	private final PacienteRepositorio pacienteRepositorio;
-	private final VacinaRepositorio vacinaRepositorio;
-	private final ProfissionalRepositorio profissionalRepositorio;
-	private final PacienteVacinadoRepositorio pacienteVacinadoRepositorio;
-
-	public VacinadosCovidDatabaseApplication(
-											 PacienteRepositorio pacienteRepositorio,
-											 VacinaRepositorio vacinaRepositorio,
-											 ProfissionalRepositorio profissionalRepositorio,
-											 PacienteVacinadoRepositorio pacienteVacinadoRepositorio)
-		{
-			this.pacienteRepositorio = pacienteRepositorio;
-			this.vacinaRepositorio = vacinaRepositorio;
-			this.profissionalRepositorio = profissionalRepositorio;
-			this.pacienteVacinadoRepositorio = pacienteVacinadoRepositorio;
-		}
+//	@PersistenceContext
+//	private EntityManager manager;
+//	private final PacienteRepositorio pacienteRepositorio;
+//	private final VacinaRepositorio vacinaRepositorio;
+//	private final ProfissionalRepositorio profissionalRepositorio;
+//	private final PacienteVacinadoRepositorio pacienteVacinadoRepositorio;
+//
+//	public VacinadosCovidDatabaseApplication(
+//											 PacienteRepositorio pacienteRepositorio,
+//											 VacinaRepositorio vacinaRepositorio,
+//											 ProfissionalRepositorio profissionalRepositorio,
+//											 PacienteVacinadoRepositorio pacienteVacinadoRepositorio)
+//		{
+//			this.pacienteRepositorio = pacienteRepositorio;
+//			this.vacinaRepositorio = vacinaRepositorio;
+//			this.profissionalRepositorio = profissionalRepositorio;
+//			this.pacienteVacinadoRepositorio = pacienteVacinadoRepositorio;
+//		}
 
 	public static void main(String[] args) {
 		SpringApplication.run(VacinadosCovidDatabaseApplication.class, args);
 	}
-
+/*
 	@Override
 	public void run(String... args) throws Exception {
 		/*
@@ -107,5 +107,4 @@ public class VacinadosCovidDatabaseApplication implements CommandLineRunner {
 		System.out.println("Resultado da busca PROFISSIONAIS ATIVOS:");
 		profAtivosList.stream().forEach(System.out::println);
 */
-	}
 }

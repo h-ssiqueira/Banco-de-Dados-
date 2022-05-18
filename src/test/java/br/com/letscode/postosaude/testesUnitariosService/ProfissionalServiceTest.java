@@ -1,10 +1,7 @@
 package br.com.letscode.postosaude.testesUnitariosService;
 
-import br.com.letscode.postosaude.exception.ProfissionalNaoEncontradoException;
 import br.com.letscode.postosaude.model.CargosEnum;
-import br.com.letscode.postosaude.repository.PacienteRepositorio;
 import br.com.letscode.postosaude.repository.ProfissionalRepositorio;
-import br.com.letscode.postosaude.services.PacienteService;
 import br.com.letscode.postosaude.services.ProfissionalService;
 import br.com.letscode.postosaude.model.Profissional;
 import org.junit.jupiter.api.Assertions;
