@@ -1,15 +1,12 @@
 package br.com.letscode.postosaude.controller;
 
-import br.com.letscode.postosaude.exception.PacienteNaoEncontradoException;
 import br.com.letscode.postosaude.exception.VacinaNaoEncontradaException;
 import br.com.letscode.postosaude.model.Vacina;
-import br.com.letscode.postosaude.repository.VacinaRepositorio;
 import br.com.letscode.postosaude.services.VacinaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

@@ -9,6 +9,7 @@ import br.com.letscode.postosaude.services.ProfissionalService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,6 +30,9 @@ import java.awt.*;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
 
 @ContextConfiguration
 @ExtendWith(MockitoExtension.class)
@@ -55,18 +59,33 @@ public class ProfissionalControllerTest {
                 .thenReturn(profissionalList);
 
         this.mockMvc.perform(MockMvcRequestBuilders
-                .get("/profissional-rest")
+                .get("/profissional")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk());
-//                .andExpect(jsonPath("$", Matchers.hasSize(profissionalList.size())))'
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$", Matchers.hasSize(profissionalList.size())))
+                        .andExpect(MockMvcResultMatchers.jsonPath("$.[0].id", Matchers.is(profissionalList.get(0).getId()), Long.class));
     }
 
     @Test
     @DisplayName("Teste remover Profissional controller")
     void deleteProfissionalControllerTest() throws Exception{
+        List<Profissional> profissionalList = new ArrayList<>();
+        profissionalList.add(new Profissional(1,"Profissional 1", CargosEnum.PROFISSIONAL_SAUDE, null));
+        profissionalList.add(new Profissional(2,"Profissional 2", CargosEnum.PROFISSIONAL_SAUDE, null));
 
+        Mockito.when(profissionalService.updateProfissional(profissionalList.get(0).getId(),profissionalList.get(0))).thenReturn(profissionalList.get(0));
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .delete("/profissional/1")
+                        .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsBytes(profissionalList.get(0))))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.equalTo("Profissional deletado (soft) com sucesso")));
+        Mockito.verify(profissionalService).updateProfissional(profissionalList.get(0).getId(),profissionalList.get(0));
     }
 
 }
