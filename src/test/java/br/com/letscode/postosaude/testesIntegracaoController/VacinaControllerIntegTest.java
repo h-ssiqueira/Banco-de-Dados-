@@ -1,10 +1,6 @@
 package br.com.letscode.postosaude.testesIntegracaoController;
 
 import br.com.letscode.postosaude.model.Vacina;
-import br.com.letscode.postosaude.controller.VacinaController;
-import br.com.letscode.postosaude.services.VacinaService;
-import br.com.letscode.postosaude.repository.VacinaRepositorio;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,11 +22,23 @@ public class VacinaControllerIntegTest {
     }
 
     @Test
-    @DisplayName("Teste atualizar a Vacina Controller")
+    @DisplayName("Teste atualizar a Vacina Controller com sucesso")
     void updateVacinaControllerIntegracaoTest(){}
 
     @Test
-    @DisplayName("Teste de deletar a vacina Controller")
+    @DisplayName("Teste de deletar a vacina Controller com sucesso")
     void deleteVacinaControllerIntegracaoTest(){}
+
+    @Test
+    @DisplayName("Teste de deletar a vacina Controller com id inválido")
+    void deleteVacinaControllerIdInvalidoTeste(){
+
+    }
+
+    @Test
+    @DisplayName("Teste de atualizar a vacina Controller com id inválido")
+    void updateVacinaControllerIdInvalidoTeste(){
+
+    }
 
 }

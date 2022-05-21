@@ -8,7 +8,6 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @ContextConfiguration
 @ExtendWith(MockitoExtension.class)
 @WebMvcTest(value = VacinaController.class)
-public class VacinaControlerTest {
+public class VacinaControllerTest {
 
     @MockBean
     private VacinaService vacinaService;
@@ -36,7 +35,7 @@ public class VacinaControlerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    @DisplayName("Teste atualizar a Vacina Controller")
+    @DisplayName("Teste atualizar a Vacina Controller com sucesso")
     void updateVacinaControllerTest() throws Exception{
         Vacina vacina = new Vacina(1,10984,"FUNDACAO BUTANTAN", 2249278);
 
@@ -53,7 +52,7 @@ public class VacinaControlerTest {
     }
 
     @Test
-    @DisplayName("Teste de deletar a vacina Controller")
+    @DisplayName("Teste de deletar a vacina Controller com sucesso")
     void deleteVacinaControllerTest() throws Exception{
         Vacina vacina = new Vacina(1,10984,"FUNDACAO BUTANTAN", 2249278);
 
@@ -68,4 +67,15 @@ public class VacinaControlerTest {
         Mockito.verify(vacinaService).deleteVacina(vacina.getId());
     }
 
+    @Test
+    @DisplayName("Teste de deletar a vacina Controller com id inválido")
+    void deleteVacinaControllerIdInvalidoTeste() throws Exception{
+
+    }
+
+    @Test
+    @DisplayName("Teste de atualizar a vacina Controller com id inválido")
+    void updateVacinaControllerIdInvalidoTeste() throws Exception{
+
+    }
 }

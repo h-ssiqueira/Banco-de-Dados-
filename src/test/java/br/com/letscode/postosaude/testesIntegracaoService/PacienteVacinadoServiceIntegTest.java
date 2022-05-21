@@ -2,16 +2,15 @@ package br.com.letscode.postosaude.testesIntegracaoService;
 
 import br.com.letscode.postosaude.model.*;
 import br.com.letscode.postosaude.services.PacienteVacinadoService;
-import br.com.letscode.postosaude.repository.PacienteVacinadoRepositorio;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PacienteVacinadoServiceIntegTest {
@@ -42,18 +41,56 @@ public class PacienteVacinadoServiceIntegTest {
 
     @Test
     @Transactional
-    @DisplayName("Teste criar PacienteVacinado service")
-    public void criarPacienteVacinadoIntegracaoTeste(){}
+    @DisplayName("Teste criar PacienteVacinado service com sucesso")
+    public void criarPacienteVacinadoIntegracaoTeste(){
+        PacienteVacinado retorno = pacienteVacinadoService.criarPacienteVacinado(pacienteVacinadoTeste);
+
+        assertNotNull(retorno.getId());
+        assertEquals(retorno.getDose(), pacienteVacinadoTeste.getDose());
+        assertEquals(retorno.getPaciente(), pacienteVacinadoTeste.getPaciente());
+        assertEquals(retorno.getProfissional(), pacienteVacinadoTeste.getProfissional());
+        assertEquals(retorno.getVacina(), pacienteVacinadoTeste.getVacina());
+        assertEquals(retorno.getData_aplicacao(), pacienteVacinadoTeste.getData_aplicacao());
+        assertEquals(retorno.getId(), pacienteVacinadoTeste.getId());
+    }
 
     @Test
-    @DisplayName("Teste atualizar PacienteVacinado service")
+    @DisplayName("Teste atualizar PacienteVacinado service com sucesso")
     public void updatePacienteVacinadoIntegracaoTeste(){}
 
     @Test
-    @DisplayName("Teste Consulta PacienteVacinado service")
+    @DisplayName("Teste Consulta PacienteVacinado service com sucesso")
     public void consultaPacienteVacinadoIntegracaoTeste(){}
 
     @Test
-    @DisplayName("Teste deletar PacienteVacinado service")
+    @DisplayName("Teste deletar PacienteVacinado service com sucesso")
     public void deletarPacienteVacinadoIntegracaoTeste(){}
+
+    @Test
+    @DisplayName("Teste criar PacienteVacinado service com id inexistente")
+    void criarPacienteVacinadoComIdInexistenteTeste(){
+
+
+    }
+
+    @Test
+    @DisplayName("Teste consultar PacienteVacinado service com dose inexistente")
+    void consultaPacienteVacinadoComDoseInexistenteTeste(){
+
+
+    }
+
+    @Test
+    @DisplayName("Teste remover PacienteVacinado service com id inexistente")
+    void deletePacienteVacinadoComIdInexistenteTeste(){
+
+
+    }
+
+    @Test
+    @DisplayName("Teste atualiza PacienteVacinado service com data invalida")
+    void atualizarPacienteVacinadoComDataInvalidaTeste(){
+
+
+    }
 }

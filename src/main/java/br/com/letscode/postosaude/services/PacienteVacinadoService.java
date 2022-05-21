@@ -29,7 +29,11 @@ public class PacienteVacinadoService {
 
     public PacienteVacinado updatePacienteVacinado(Integer id, PacienteVacinado pacienteVacinado){
         PacienteVacinado entidade = this.selecionaPacienteVacinadoById(id);
-        entidade.setData_aplicacao(pacienteVacinado.getData_aplicacao());
+        try {
+            entidade.setData_aplicacao(pacienteVacinado.getData_aplicacao());
+        }catch(Exception e){
+            return null;
+        }
         return this.pacienteVacinadoRepository.save(entidade);
     }
 

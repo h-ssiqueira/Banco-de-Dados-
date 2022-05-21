@@ -2,10 +2,6 @@ package br.com.letscode.postosaude.testesIntegracaoController;
 
 import br.com.letscode.postosaude.model.CargosEnum;
 import br.com.letscode.postosaude.model.Profissional;
-import br.com.letscode.postosaude.controller.ProfissionalController;
-import br.com.letscode.postosaude.services.ProfissionalService;
-import br.com.letscode.postosaude.repository.ProfissionalRepositorio;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,10 +23,23 @@ public class ProfissionalControllerIntegTest {
     }
 
     @Test
-    @DisplayName("Teste consultar todos os Profissionais controller")
+    @DisplayName("Teste consultar todos os Profissionais controller com sucesso")
     void selecionarTodosControllerIntegracaoTest(){}
 
     @Test
-    @DisplayName("Teste remover Profissional controller")
+    @DisplayName("Teste remover Profissional controller com sucesso")
     void deleteProfissionalControllerIntegracaoTest(){}
+
+    @Test
+    @DisplayName("Teste consulta Profissional controller sem cadastros")
+    void consultaListaProfissionalSemCadastrosControllerTeste(){
+
+
+    }
+
+    @Test
+    @DisplayName("Teste remover (softDelete) Profissional controller com Id inexistente")
+    void removeListaProfissionalComIdInexistenteControllerTeste(){
+
+    }
 }
