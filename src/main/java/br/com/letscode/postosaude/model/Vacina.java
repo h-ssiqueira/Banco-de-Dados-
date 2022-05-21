@@ -10,8 +10,9 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name="\"VACINA\"")
+@Table(name="VACINA")
 public class Vacina {
 
     @Id
