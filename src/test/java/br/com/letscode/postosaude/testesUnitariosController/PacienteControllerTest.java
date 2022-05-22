@@ -133,35 +133,4 @@ public class PacienteControllerTest {
 
         Mockito.verify(pacienteService).consultaPacienteG(pacientesList.get(0).getSexo());
     }
-
-    @Test
-    @DisplayName("Teste criação de paciente controller com nome já existente")
-    void criaPacienteComNomeExistenteControllerTeste() throws Exception{
-
-    }
-
-    @Test
-    @DisplayName("Teste consultar paciente controller com nome inexistente")
-    void consultaPacienteComNomeInexistenteControllerTeste() throws Exception{
-
-    }
-
-    @Test
-    @DisplayName("Teste consulta de paciente controller com gênero não cadastrado")
-    void consultaPacienteComGeneroNaoCadastradoControllerTeste() throws Exception{
-
-    }
-
-    @Test
-    @DisplayName("Teste delete de paciente controller com id inexistente")
-    void deletePacienteComIdInexistenteControllerTeste() throws Exception{
-
-    }
-
-    @Test
-    @DisplayName("Teste atualiza paciente controller com nome já existente")
-    void atualizaPacienteComNomeExistenteControllerTeste() throws Exception{
-
-
-    }
 }

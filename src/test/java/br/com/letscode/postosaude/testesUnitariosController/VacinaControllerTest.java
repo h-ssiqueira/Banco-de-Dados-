@@ -66,16 +66,4 @@ public class VacinaControllerTest {
 
         Mockito.verify(vacinaService).deleteVacina(vacina.getId());
     }
-
-    @Test
-    @DisplayName("Teste de deletar a vacina Controller com id inválido")
-    void deleteVacinaControllerIdInvalidoTeste() throws Exception{
-
-    }
-
-    @Test
-    @DisplayName("Teste de atualizar a vacina Controller com id inválido")
-    void updateVacinaControllerIdInvalidoTeste() throws Exception{
-
-    }
 }

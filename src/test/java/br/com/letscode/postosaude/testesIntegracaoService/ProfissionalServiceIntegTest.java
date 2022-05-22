@@ -47,8 +47,7 @@ public class ProfissionalServiceIntegTest {
     @DisplayName("Teste atualizar Profissional service")
     public void updateProfissionalIntegracaoTeste(){
         Profissional profissional = profissionalService.updateProfissional(1,profissionalTeste);
-        assertEquals(profissional.getDeleted_at(), LocalDate.parse("2022-05-21"));
+        assertEquals(profissional.getDeleted_at(), LocalDate.now());
         assertEquals(profissional.getDeleted_by(), profissionalTeste.getDeleted_by());
-
     }
 }

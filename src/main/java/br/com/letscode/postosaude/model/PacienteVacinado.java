@@ -26,13 +26,14 @@ public class PacienteVacinado {
     @OneToOne
 //    @JoinTable(name = "PACIENTE_VACINADO", joinColumns = {@JoinColumn(name = "PACIENTE_ID")}, inverseJoinColumns = {@JoinColumn(name = "ID")})
     @JoinColumn(name = "PACIENTE_ID", nullable = false)
+
     private Paciente paciente;
 
     @ManyToOne
     @JoinColumn (name = "PROFISSIONAL_ID", nullable = false)
     private Profissional profissional;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.PERSIST)
     @JoinColumn (name = "VACINA_ID", nullable = false)
     private Vacina vacina;
 

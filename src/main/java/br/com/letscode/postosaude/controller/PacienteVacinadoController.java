@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -35,9 +36,12 @@ public class PacienteVacinadoController {
 
     @PutMapping("{id}")
     public ResponseEntity updatePacientevacinado(@PathVariable("id") Integer id, @RequestBody PacienteVacinado pacienteVacinado){
-        ResponseEntity responseErro = new ResponseEntity("Nome inválido", HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseEntity responseErro = new ResponseEntity("Data inválida", HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseEntity response = new ResponseEntity("Paciente vacinado alterado com sucesso", HttpStatus.OK);
         try {
+            if(pacienteVacinado.getData_aplicacao().isAfter(LocalDate.now())){
+                throw new Exception();
+            }
             this.pacienteVacinadoService.updatePacienteVacinado(id, pacienteVacinado);
         }catch (Exception e){
             log.info("Nome inválido");

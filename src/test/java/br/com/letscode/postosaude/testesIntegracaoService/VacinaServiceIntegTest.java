@@ -40,42 +40,41 @@ public class VacinaServiceIntegTest {
 
     @Test
     @Transactional
-    @DisplayName("Teste deletar Vacina service")
+    @DisplayName("Teste deletar Vacina service com sucesso")
     public void deleteVacinaIntegracaoTeste(){
        vacinaService.deleteVacina(1);
        try{
-           Vacina vacina = vacinaService.updateVacina(1,vacinaTeste);
+           vacinaService.updateVacina(1,vacinaTeste);
            fail("Deveria dar erro");
        }catch (Exception e){
            assertEquals("Vacina não encontrada!", e.getMessage());
        }
     }
-
-    @Test
-    @DisplayName("Teste atualizar Vacina service")
-    public void updateVacinaIntegracaoTeste(){
-        Vacina vacina = vacinaService.updateVacina(1,vacinaTeste);
-        System.out.println(vacina);
-        assertEquals(vacina.getPosto_saude(), vacinaTeste.getPosto_saude());
-    }
-    @DisplayName("Teste deletar Vacina service com sucesso")
-    public void deleteVacinaIntegracaoTeste(){}
-
     @Test
     @DisplayName("Teste atualizar Vacina service com sucesso")
-    void updateVacinaIntegracaoTeste(){}
-
-
+    public void updateVacinaIntegracaoTeste(){
+        Vacina vacina = vacinaService.updateVacina(1,vacinaTeste);
+        assertEquals(vacina.getPosto_saude(), vacinaTeste.getPosto_saude());
+    }
     @Test
     @DisplayName("Teste delete Vacina service com Id inexistente")
     void deleteVacinaComIdInexistenteTeste(){
-
+        try{
+            vacinaService.deleteVacina(327);
+            fail("Deveria dar erro");
+        }catch (Exception e){
+            assertEquals("Vacina não encontrada!", e.getMessage());
+        }
     }
 
     @Test
     @DisplayName("Teste atualizar Vacina service com Id inválido")
     void atualizarVacinaComIdInvalidoTeste(){
-
+        try{
+            vacinaService.updateVacina(400,vacinaTeste);
+        }catch (Exception e){
+            assertEquals("Vacina não encontrada!", e.getMessage());
+        }
     }
 
 }

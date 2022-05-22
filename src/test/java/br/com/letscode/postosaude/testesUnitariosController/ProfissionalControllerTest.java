@@ -80,17 +80,4 @@ public class ProfissionalControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.equalTo("Profissional deletado (soft) com sucesso")));
         Mockito.verify(profissionalService).updateProfissional(profissionalList.get(0).getId(),profissionalList.get(0));
     }
-
-    @Test
-    @DisplayName("Teste consulta Profissional controller sem cadastros")
-    void consultaListaProfissionalSemCadastrosControllerTeste() throws Exception{
-
-
-    }
-
-    @Test
-    @DisplayName("Teste remover (softDelete) Profissional controller com Id inexistente")
-    void removeListaProfissionalComIdInexistenteControllerTeste() throws Exception{
-
-    }
 }

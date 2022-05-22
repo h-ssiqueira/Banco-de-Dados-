@@ -175,28 +175,4 @@ public class PacienteVacinadoControllerTest {
 
         Mockito.verify(pacienteVacinadoService).deletarPacienteVacinado(pacienteVacinado.getId());
     }
-
-    @Test
-    @DisplayName("Teste criar PacienteVacinado controller com id inexistente")
-    void criarPacienteVacinadoComIdInexistenteControllerTeste() throws Exception{
-
-    }
-
-    @Test
-    @DisplayName("Teste consultar PacienteVacinado controller com dose inexistente")
-    void consultaPacienteVacinadoComDoseInexistenteControllerTeste() throws Exception{
-
-    }
-
-    @Test
-    @DisplayName("Teste remover PacienteVacinado controller com id inexistente")
-    void deletePacienteVacinadoComIdInexistenteControllerTeste() throws Exception{
-
-    }
-
-    @Test
-    @DisplayName("Teste atualiza PacienteVacinado controller com data invalida")
-    void atualizarPacienteVacinadoComDataInvalidaControllerTeste() throws Exception{
-
-    }
 }

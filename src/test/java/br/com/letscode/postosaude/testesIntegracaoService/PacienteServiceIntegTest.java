@@ -7,7 +7,7 @@ import br.com.letscode.postosaude.services.PacienteService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.event.annotation.AfterTestMethod;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
@@ -45,7 +45,6 @@ public class PacienteServiceIntegTest {
         Paciente paciente = pacienteService.criarPaciente(pacienteTeste);
         assertNotNull(paciente.getId());
         assertEquals(pacienteTeste.getNome(), paciente.getNome());
-
     }
 
     @Test
@@ -69,7 +68,6 @@ public class PacienteServiceIntegTest {
     @Test
     @DisplayName("Teste consulta paciente por genero service")
     public void consultaPacienteGIntegracaoTeste(){
-
         List<Paciente> pacientes = pacienteService.consultaPacienteG(SexoEnum.MASCULINO);
 
         assertNotNull(pacientes);
@@ -79,13 +77,11 @@ public class PacienteServiceIntegTest {
     @Test
     @DisplayName("Teste atualiza paciente service")
     public void updatePacienteIntegracaoTeste(){
-        Paciente paciente = pacienteService.updatePaciente(1, pacienteTeste);
-        assertEquals(paciente.getNome(), pacienteTeste.getNome());
+        Paciente pacienteNew = new Paciente();
+        pacienteNew.setNome("Alberto");
+        Paciente paciente = pacienteService.updatePaciente(1, pacienteNew);
+        assertEquals(paciente.getNome(), pacienteNew.getNome());
     }
-
-
-
-    // TODO: 20/05/2022 Ver se necessário a criação de um método para criar e listar ao mesmo tempo
 
     @Test
     @DisplayName("Teste criação de paciente service com nome já existente")
@@ -101,8 +97,7 @@ public class PacienteServiceIntegTest {
     @DisplayName("Teste consultar paciente service com nome inexistente")
     void consultaPacienteComNomeInexistenteTeste(){
         Paciente paciente = pacienteService.consultaPacienteN("Josué");
-
-        assertNotNull(paciente);
+        assertNull(paciente);
     }
 
     @Test
@@ -118,17 +113,20 @@ public class PacienteServiceIntegTest {
     @Test
     @DisplayName("Teste delete de paciente service com id inexistente")
     void deletePacienteComIdInexistenteTeste(){
-
-
+        try{
+            pacienteService.deletePaciente(400);
+        }catch (Exception e){
+            assertEquals("Paciente não encontrado!", e.getMessage());
+        }
     }
 
     @Test
     @DisplayName("Teste atualiza paciente service com nome já existente")
     void atualizaPacienteComNomeExistenteTeste(){
         try{
-            Paciente paciente = pacienteService.updatePaciente(2,pacienteTeste);
+            Paciente paciente = pacienteService.updatePaciente(322,pacienteTeste);
         } catch(Exception e){
-            assertEquals("paciente não encontrado", e.getMessage());
+            assertEquals("Paciente já existente/Id não identificado!", e.getMessage());
         }
 
     }
