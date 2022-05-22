@@ -2,14 +2,10 @@ package br.com.letscode.postosaude.testesUnitariosController;
 
 import br.com.letscode.postosaude.model.CargosEnum;
 import br.com.letscode.postosaude.model.Profissional;
-import br.com.letscode.postosaude.repository.ProfissionalRepositorio;
 import br.com.letscode.postosaude.controller.ProfissionalController;
-import br.com.letscode.postosaude.services.PacienteService;
 import br.com.letscode.postosaude.services.ProfissionalService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,9 +21,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import javax.print.attribute.standard.Media;
-import java.awt.*;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +42,7 @@ public class ProfissionalControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    @DisplayName("Teste consultar todos os Profissionais controller")
+    @DisplayName("Teste consultar todos os Profissionais controller com sucesso")
     void selecionarTodosControllerTest() throws Exception{
         List<Profissional> profissionalList = new ArrayList<>();
         profissionalList.add(new Profissional("Profissional 1", CargosEnum.PROFISSIONAL_SAUDE, null));
@@ -69,7 +62,7 @@ public class ProfissionalControllerTest {
     }
 
     @Test
-    @DisplayName("Teste remover Profissional controller")
+    @DisplayName("Teste remover Profissional controller com sucesso")
     void deleteProfissionalControllerTest() throws Exception{
         List<Profissional> profissionalList = new ArrayList<>();
         profissionalList.add(new Profissional(1,"Profissional 1", CargosEnum.PROFISSIONAL_SAUDE, null));
@@ -88,4 +81,16 @@ public class ProfissionalControllerTest {
         Mockito.verify(profissionalService).updateProfissional(profissionalList.get(0).getId(),profissionalList.get(0));
     }
 
+    @Test
+    @DisplayName("Teste consulta Profissional controller sem cadastros")
+    void consultaListaProfissionalSemCadastrosControllerTeste() throws Exception{
+
+
+    }
+
+    @Test
+    @DisplayName("Teste remover (softDelete) Profissional controller com Id inexistente")
+    void removeListaProfissionalComIdInexistenteControllerTeste() throws Exception{
+
+    }
 }

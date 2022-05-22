@@ -1,18 +1,8 @@
 package br.com.letscode.postosaude.testesIntegracaoService;
 
-import br.com.letscode.postosaude.model.Paciente;
-import br.com.letscode.postosaude.model.SexoEnum;
 import br.com.letscode.postosaude.model.Vacina;
-import br.com.letscode.postosaude.repository.PacienteRepositorio;
-import br.com.letscode.postosaude.services.PacienteService;
 import br.com.letscode.postosaude.services.VacinaService;
-import br.com.letscode.postosaude.repository.VacinaRepositorio;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -21,6 +11,7 @@ import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class VacinaServiceIntegTest {
@@ -66,6 +57,25 @@ public class VacinaServiceIntegTest {
         Vacina vacina = vacinaService.updateVacina(1,vacinaTeste);
         System.out.println(vacina);
         assertEquals(vacina.getPosto_saude(), vacinaTeste.getPosto_saude());
+    }
+    @DisplayName("Teste deletar Vacina service com sucesso")
+    public void deleteVacinaIntegracaoTeste(){}
+
+    @Test
+    @DisplayName("Teste atualizar Vacina service com sucesso")
+    void updateVacinaIntegracaoTeste(){}
+
+
+    @Test
+    @DisplayName("Teste delete Vacina service com Id inexistente")
+    void deleteVacinaComIdInexistenteTeste(){
+
+    }
+
+    @Test
+    @DisplayName("Teste atualizar Vacina service com Id inválido")
+    void atualizarVacinaComIdInvalidoTeste(){
+
     }
 
 }

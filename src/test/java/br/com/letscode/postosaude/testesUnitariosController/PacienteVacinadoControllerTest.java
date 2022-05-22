@@ -38,7 +38,7 @@ public class PacienteVacinadoControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    @DisplayName("Teste criar PacienteVacinado controller")
+    @DisplayName("Teste criar PacienteVacinado controller com sucesso")
     void criarPacienteVacinadoControllerTest() throws Exception{
 
         PacienteVacinado pacienteVacinado = new PacienteVacinado(1,
@@ -78,7 +78,7 @@ public class PacienteVacinadoControllerTest {
     }
 
     @Test
-    @DisplayName("Teste atualizar PacienteVacinado controller")
+    @DisplayName("Teste atualizar PacienteVacinado controller com sucesso")
     void updatePacienteVacinadoControllerTest() throws Exception{
         PacienteVacinado pacienteVacinado = new PacienteVacinado(1,
                 new Paciente(5,"Dolores",LocalDate.parse("1980-01-01"),SexoEnum.FEMININO),
@@ -110,7 +110,7 @@ public class PacienteVacinadoControllerTest {
     }
 
     @Test
-    @DisplayName("Teste consultar PacienteVacinado controller")
+    @DisplayName("Teste consultar PacienteVacinado controller com sucesso")
     void consultarPacienteVacinadoControllerTest() throws Exception{
         List<PacienteVacinado> pacientesVacinados = new ArrayList<>();
         pacientesVacinados.add(new PacienteVacinado(
@@ -156,7 +156,7 @@ public class PacienteVacinadoControllerTest {
     }
 
     @Test
-    @DisplayName("Teste remover PacienteVacinado controller")
+    @DisplayName("Teste remover PacienteVacinado controller com sucesso")
     void deletarPacienteVacinadoControllerTest() throws Exception{
         PacienteVacinado pacienteVacinado = new PacienteVacinado(1,
                 new Paciente(2,"Valdemar",LocalDate.parse("1980-01-01"),SexoEnum.MASCULINO),
@@ -174,5 +174,29 @@ public class PacienteVacinadoControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.equalTo("PacienteVacinado deletado com sucesso")));
 
         Mockito.verify(pacienteVacinadoService).deletarPacienteVacinado(pacienteVacinado.getId());
+    }
+
+    @Test
+    @DisplayName("Teste criar PacienteVacinado controller com id inexistente")
+    void criarPacienteVacinadoComIdInexistenteControllerTeste() throws Exception{
+
+    }
+
+    @Test
+    @DisplayName("Teste consultar PacienteVacinado controller com dose inexistente")
+    void consultaPacienteVacinadoComDoseInexistenteControllerTeste() throws Exception{
+
+    }
+
+    @Test
+    @DisplayName("Teste remover PacienteVacinado controller com id inexistente")
+    void deletePacienteVacinadoComIdInexistenteControllerTeste() throws Exception{
+
+    }
+
+    @Test
+    @DisplayName("Teste atualiza PacienteVacinado controller com data invalida")
+    void atualizarPacienteVacinadoComDataInvalidaControllerTeste() throws Exception{
+
     }
 }

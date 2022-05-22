@@ -7,7 +7,6 @@ import br.com.letscode.postosaude.controller.PacienteController;
 import br.com.letscode.postosaude.services.PacienteService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ContextConfiguration
 @ExtendWith(SpringExtension.class)
@@ -47,7 +45,7 @@ public class PacienteControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    @DisplayName("Teste criar Paciente controller")
+    @DisplayName("Teste criar Paciente controller com sucesso")
     void criaPacienteControllerTest() throws Exception{
         Paciente paciente = new Paciente("Marina", LocalDate.parse("2001-05-24"), SexoEnum.FEMININO);
 
@@ -65,7 +63,7 @@ public class PacienteControllerTest {
     }
 
     @Test
-    @DisplayName("Teste atualizar Paciente controller")
+    @DisplayName("Teste atualizar Paciente controller com sucesso")
     void updatePacienteControllerTest() throws Exception{
         Paciente paciente = new Paciente(1,"Marina", LocalDate.parse("2001-05-24"), SexoEnum.FEMININO);
         Paciente pacienteRetorno = new Paciente(2,"Creusa", LocalDate.parse("2001-05-24"), SexoEnum.FEMININO);
@@ -85,7 +83,7 @@ public class PacienteControllerTest {
     }
 
     @Test
-    @DisplayName("Teste deletar Paciente controller")
+    @DisplayName("Teste deletar Paciente controller com sucesso")
     void deletePacienteControllerTest() throws Exception{
         Paciente paciente = new Paciente(1,"Marina", LocalDate.parse("2001-05-24"), SexoEnum.FEMININO);
 
@@ -101,7 +99,7 @@ public class PacienteControllerTest {
     }
 
     @Test
-    @DisplayName("Teste consultar Paciente por nome controller")
+    @DisplayName("Teste consultar Paciente por nome controller com sucesso")
     void consultaPacienteNControllerTest() throws Exception{
         Paciente paciente = new Paciente(1,"Rhuan", LocalDate.parse("2001-05-24"), SexoEnum.MASCULINO);
 
@@ -116,7 +114,7 @@ public class PacienteControllerTest {
     }
 
     @Test
-    @DisplayName("Teste consultar Paciente por genero controller")
+    @DisplayName("Teste consultar Paciente por genero controller com sucesso")
     void consultaPacienteGControllerTest() throws Exception{
         List<Paciente> pacientesList = new ArrayList<>();
 
@@ -134,5 +132,36 @@ public class PacienteControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].id", Matchers.is(pacientesList.get(0).getId()), Integer.class));
 
         Mockito.verify(pacienteService).consultaPacienteG(pacientesList.get(0).getSexo());
+    }
+
+    @Test
+    @DisplayName("Teste criação de paciente controller com nome já existente")
+    void criaPacienteComNomeExistenteControllerTeste() throws Exception{
+
+    }
+
+    @Test
+    @DisplayName("Teste consultar paciente controller com nome inexistente")
+    void consultaPacienteComNomeInexistenteControllerTeste() throws Exception{
+
+    }
+
+    @Test
+    @DisplayName("Teste consulta de paciente controller com gênero não cadastrado")
+    void consultaPacienteComGeneroNaoCadastradoControllerTeste() throws Exception{
+
+    }
+
+    @Test
+    @DisplayName("Teste delete de paciente controller com id inexistente")
+    void deletePacienteComIdInexistenteControllerTeste() throws Exception{
+
+    }
+
+    @Test
+    @DisplayName("Teste atualiza paciente controller com nome já existente")
+    void atualizaPacienteComNomeExistenteControllerTeste() throws Exception{
+
+
     }
 }

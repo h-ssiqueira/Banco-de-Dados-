@@ -26,8 +26,9 @@ public class VacinaServiceTest {
     private PacienteVacinadoRepositorio pacienteVacinadoRepositorio;
 
     @Test
-    @DisplayName("Teste deletar Vacina service")
+    @DisplayName("Teste deletar Vacina service com sucesso")
     void deleteVacinaTeste(){
+
         Vacina novo = new Vacina(1,10984,"FUNDACAO BUTANTAN", 2249278);
         Optional<Vacina> retorno = Optional.of(new Vacina());
 
@@ -44,11 +45,11 @@ public class VacinaServiceTest {
     }
 
     @Test
-    @DisplayName("Teste atualizar Vacina service")
+    @DisplayName("Teste atualizar Vacina service com sucesso")
     void updateVacinaTeste(){
 
         Vacina entidade = new Vacina(1,10984,"FUNDACAO BUTANTAN", 2249278);
-        Vacina entidadeRetorno = new Vacina(2,10984,"BUTANTAN", 2249279);
+        Vacina entidadeRetorno;
 
         Mockito.when(vacinaRepositorio.findById(entidade.getId())).thenReturn(Optional.of(entidade));
         Mockito.when(vacinaRepositorio.save(entidade)).thenReturn(entidade);
@@ -59,6 +60,43 @@ public class VacinaServiceTest {
         Assertions.assertEquals(entidadeRetorno.getPosto_saude(), entidade.getPosto_saude());
         Assertions.assertEquals(entidadeRetorno.getCodigoVacina(), entidade.getCodigoVacina());
         Assertions.assertEquals(entidadeRetorno.getFabricante(), entidade.getFabricante());
+    }
 
+    @Test
+    @DisplayName("Teste delete Vacina service com Id inexistente")
+    void deleteVacinaComIdInexistenteTeste(){
+
+        Vacina novo = new Vacina(1,10984,"FUNDACAO BUTANTAN", 2249278);
+        novo.setId(null);
+        Optional<Vacina> retorno = Optional.of(new Vacina());
+
+        Mockito.when(vacinaRepositorio.findById(novo.getId()))
+                .thenReturn(Optional.of(novo));
+
+        Mockito.doNothing().when(pacienteVacinadoRepositorio).deleteByVacinaId(novo.getId());
+        Mockito.doNothing().when(vacinaRepositorio).delete(novo);
+
+        vacinaService.deleteVacina(novo.getId());
+
+        Assertions.assertNotSame(retorno,novo);
+        Mockito.verify(vacinaRepositorio, Mockito.times(1)).delete(novo);
+    }
+
+    @Test
+    @DisplayName("Teste atualizar Vacina service com Id inválido")
+    void atualizarVacinaComIdInvalidoTeste(){
+
+        Vacina entidade = new Vacina(null,10984,"FUNDACAO BUTANTAN", 2249278);
+        Vacina entidadeRetorno;
+
+        Mockito.when(vacinaRepositorio.findById(entidade.getId())).thenReturn(Optional.of(entidade));
+        Mockito.when(vacinaRepositorio.save(entidade)).thenReturn(entidade);
+
+        entidadeRetorno = vacinaService.updateVacina(entidade.getId(), entidade);
+
+        Assertions.assertNotNull(entidadeRetorno);
+        Assertions.assertEquals(entidadeRetorno.getPosto_saude(), entidade.getPosto_saude());
+        Assertions.assertEquals(entidadeRetorno.getCodigoVacina(), entidade.getCodigoVacina());
+        Assertions.assertEquals(entidadeRetorno.getFabricante(), entidade.getFabricante());
     }
 }

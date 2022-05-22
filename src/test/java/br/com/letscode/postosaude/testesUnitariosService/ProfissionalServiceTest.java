@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,10 +26,11 @@ public class ProfissionalServiceTest {
     private ProfissionalRepositorio profissionalRepositorio;
 
     @Test
-    @DisplayName("Teste atualizar Profissional service")
+    @DisplayName("Teste atualizar Profissional service com sucesso")
     void updateProfissionalTeste(){
+
         Profissional profissional = new Profissional(1,"123", CargosEnum.PROFISSIONAL_SAUDE, null);
-        Profissional profissionalRetorno = new Profissional(2,"1234", CargosEnum.PROFISSIONAL_SAUDE, LocalDate.parse("1999-05-15"));
+        Profissional profissionalRetorno;
 
         Mockito.when(profissionalRepositorio.findById(profissional.getId())).thenReturn(Optional.of(profissional));
         Mockito.when(profissionalRepositorio.save(profissional)).thenReturn(profissional);
@@ -42,8 +42,9 @@ public class ProfissionalServiceTest {
     }
 
     @Test
-    @DisplayName("Teste consulta Profissional service")
+    @DisplayName("Teste consulta Profissional service com sucesso")
     void consultaListaProfissionalTeste(){
+
         List<Profissional> profissionalList = new ArrayList<>();
         profissionalList.add(new Profissional("Profissional 1", CargosEnum.PROFISSIONAL_SAUDE, null));
         profissionalList.add(new Profissional("Profissional 2", CargosEnum.PROFISSIONAL_SAUDE, null));
@@ -62,4 +63,33 @@ public class ProfissionalServiceTest {
         Assertions.assertEquals(3, profissionalList.size());
     }
 
+    @Test
+    @DisplayName("Teste consulta Profissional service sem cadastros")
+    void consultaListaProfissionalSemCadastrosTeste(){
+
+        List<Profissional> profissionais = new ArrayList<>();
+
+
+        Mockito.when(profissionalRepositorio.findAll()).thenReturn(profissionais);
+        List<Profissional> profissionaisRetorno = profissionalService.selecionarTodos();
+
+        Assertions.assertNotNull(profissionais);
+        Assertions.assertTrue(profissionais.isEmpty());
+        Assertions.assertEquals(0, profissionais.size());
+    }
+
+    @Test
+    @DisplayName("Teste remover (softDelete) Profissional service com Id inexistente")
+    void removeListaProfissionalComIdInexistenteTeste(){
+        Profissional profissional = new Profissional(null,"123", CargosEnum.PROFISSIONAL_SAUDE, null);
+        Profissional profissionalRetorno;
+
+        Mockito.when(profissionalRepositorio.findById(profissional.getId())).thenReturn(Optional.of(profissional));
+        Mockito.when(profissionalRepositorio.save(profissional)).thenReturn(profissional);
+
+        profissionalRetorno = profissionalService.updateProfissional(profissional.getId(), profissional);
+
+        Assertions.assertNotNull(profissionalRetorno);
+        Assertions.assertEquals(profissionalRetorno.getDeleted_at(),profissional.getDeleted_at());
+    }
 }

@@ -1,10 +1,6 @@
 package br.com.letscode.postosaude.testesIntegracaoController;
 
 import br.com.letscode.postosaude.model.*;
-import br.com.letscode.postosaude.controller.PacienteVacinadoController;
-import br.com.letscode.postosaude.services.PacienteVacinadoService;
-import br.com.letscode.postosaude.repository.PacienteVacinadoRepositorio;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,18 +27,42 @@ public class PacienteVacinadoControllerIntegTest {
     }
 
     @Test
-    @DisplayName("Teste criar PacienteVacinado controller")
+    @DisplayName("Teste criar PacienteVacinado controller com sucesso")
     void criarPacienteVacinadoControllerIntegracaoTest(){}
 
     @Test
-    @DisplayName("Teste atualizar PacienteVacinado controller")
+    @DisplayName("Teste atualizar PacienteVacinado controller com sucesso")
     void updatePacienteVacinadoControllerIntegracaoTest(){}
 
     @Test
-    @DisplayName("Teste consultar PacienteVacinado controller")
+    @DisplayName("Teste consultar PacienteVacinado controller com sucesso")
     void consultarPacienteVacinadoControllerIntegracaoTest(){}
 
     @Test
-    @DisplayName("Teste remover PacienteVacinado controller")
+    @DisplayName("Teste remover PacienteVacinado controller com sucesso")
     void deletarPacienteVacinadoControllerIntegracaoTest(){}
+
+    @Test
+    @DisplayName("Teste criar PacienteVacinado controller com id inexistente")
+    void criarPacienteVacinadoComIdInexistenteControllerTeste(){
+
+    }
+
+    @Test
+    @DisplayName("Teste consultar PacienteVacinado controller com dose inexistente")
+    void consultaPacienteVacinadoComDoseInexistenteControllerTeste(){
+
+    }
+
+    @Test
+    @DisplayName("Teste remover PacienteVacinado controller com id inexistente")
+    void deletePacienteVacinadoComIdInexistenteControllerTeste(){
+
+    }
+
+    @Test
+    @DisplayName("Teste atualiza PacienteVacinado controller com data invalida")
+    void atualizarPacienteVacinadoComDataInvalidaControllerTeste(){
+
+    }
 }
