@@ -3,11 +3,14 @@ package br.com.letscode.postosaude.testesIntegracaoService;
 import br.com.letscode.postosaude.model.Paciente;
 import br.com.letscode.postosaude.model.SexoEnum;
 import br.com.letscode.postosaude.services.PacienteService;
+
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.event.annotation.AfterTestMethod;
 
 import java.time.LocalDate;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,18 +20,18 @@ public class PacienteServiceIntegTest {
     @Autowired
     public PacienteService pacienteService;
 
-    public Paciente pacienteTeste;
+    public static Paciente pacienteTeste;
 
     @BeforeAll
     static void iniciaTestesAll() {
         System.out.println("Iniciando teste de todos");
     }
 
-    @BeforeEach
-    public void iniciaTestesEach(){
+    @BeforeAll
+    public static void iniciaTestesEach(){
         System.out.println("Iniciando model");
         pacienteTeste = new Paciente();
-        pacienteTeste.setId(1);
+        pacienteTeste.setId(322);
         pacienteTeste.setNome("Teste");
         pacienteTeste.setSexo(SexoEnum.MASCULINO);
         pacienteTeste.setData_nascimento(LocalDate.parse("2001-05-29"));
@@ -39,32 +42,34 @@ public class PacienteServiceIntegTest {
     @Test
     @DisplayName("Teste criar paciente service")
     public void criarPacienteIntegracaoTeste(){
-        Paciente retorno = pacienteService.criarPaciente(pacienteTeste);
+        Paciente paciente = pacienteService.criarPaciente(pacienteTeste);
+        assertNotNull(paciente.getId());
+        assertEquals(pacienteTeste.getNome(), paciente.getNome());
 
-        assertNotNull(retorno.getId());
-        assertEquals(retorno.getNome(), pacienteTeste.getNome());
-        assertEquals(retorno.getSexo(), pacienteTeste.getSexo());
-        assertEquals(retorno.getData_nascimento(), pacienteTeste.getData_nascimento());
     }
 
     @Test
+    @Transactional
     @DisplayName("Teste deletar paciente service")
     public void deletePacienteIntegracaoTeste(){
-        pacienteService.deletePaciente(4);
-
+        Paciente paciente = pacienteService.consultaPacienteN("SOLANGE GEMA DALL ALBA");
+        assertNotNull(paciente);
+        pacienteService.deletePaciente(1);
+        Paciente pacienteDepois = pacienteService.consultaPacienteN("SOLANGE GEMA DALL ALBA");
+        assertNull(pacienteDepois);
     }
 
     @Test
     @DisplayName("Teste consulta paciente por nome service")
     public void consultaPacienteNIntegracaoTeste(){
         Paciente paciente = pacienteService.consultaPacienteN("ARCHIMEDES FELICIO GONSALVES");
-
         assertNotNull(paciente);
     }
 
     @Test
     @DisplayName("Teste consulta paciente por genero service")
     public void consultaPacienteGIntegracaoTeste(){
+
         List<Paciente> pacientes = pacienteService.consultaPacienteG(SexoEnum.MASCULINO);
 
         assertNotNull(pacientes);
@@ -74,12 +79,11 @@ public class PacienteServiceIntegTest {
     @Test
     @DisplayName("Teste atualiza paciente service")
     public void updatePacienteIntegracaoTeste(){
-        Paciente paciente = pacienteService.updatePaciente(2,pacienteTeste);
-
-        assertNotNull(paciente);
-        assertEquals(pacienteTeste.getNome(), paciente.getNome());
-        assertEquals(pacienteTeste.getData_nascimento(), paciente.getData_nascimento());
+        Paciente paciente = pacienteService.updatePaciente(1, pacienteTeste);
+        assertEquals(paciente.getNome(), pacienteTeste.getNome());
     }
+
+
 
     // TODO: 20/05/2022 Ver se necessário a criação de um método para criar e listar ao mesmo tempo
 

@@ -30,7 +30,7 @@ public class PacienteVacinadoServiceIntegTest {
         System.out.println("Iniciando model");
         pacienteVacinadoTeste = new PacienteVacinado();
         pacienteVacinadoTeste.setPaciente(new Paciente("Rodrigo", LocalDate.now(), SexoEnum.MASCULINO));
-        pacienteVacinadoTeste.setVacina(new Vacina(1,"Postinho",15));
+        pacienteVacinadoTeste.setVacina(new Vacina(1,1,"Postinho",15));
         pacienteVacinadoTeste.setProfissional(new Profissional("Profissional 1", CargosEnum.PROFISSIONAL_SAUDE));
         pacienteVacinadoTeste.setData_aplicacao(LocalDate.now());
         pacienteVacinadoTeste.setDose(1);

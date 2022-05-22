@@ -7,6 +7,11 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProfissionalServiceIntegTest {
 
@@ -32,22 +37,18 @@ public class ProfissionalServiceIntegTest {
     }
 
     @Test
-    @DisplayName("Teste consulta profissional service com sucesso")
-    public void consultaListaProfissionalIntegracaoTeste(){}
-    @Test
-    @DisplayName("Teste atualizar Profissional service com sucesso")
-    public void updateProfissionalIntegracaoTeste(){}
-
-    @Test
-    @DisplayName("Teste consulta Profissional service sem cadastros")
-    void consultaListaProfissionalSemCadastrosTeste(){
-
-
+    @DisplayName("Teste consulta profissional service")
+    public void consultaListaProfissionalIntegracaoTeste(){
+        List<Profissional> profissionalList = profissionalService.selecionarTodos();
+        assertNotNull(profissionalList);
+        assertTrue(profissionalList.size() > 0);
     }
-
     @Test
-    @DisplayName("Teste remover (softDelete) Profissional service com Id inexistente")
-    void removeListaProfissionalComIdInexistenteTeste(){
+    @DisplayName("Teste atualizar Profissional service")
+    public void updateProfissionalIntegracaoTeste(){
+        Profissional profissional = profissionalService.updateProfissional(1,profissionalTeste);
+        assertEquals(profissional.getDeleted_at(), LocalDate.parse("2022-05-21"));
+        assertEquals(profissional.getDeleted_by(), profissionalTeste.getDeleted_by());
 
     }
 }
